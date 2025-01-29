@@ -1,0 +1,27 @@
+{
+  "name": "blog-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "dev:api": "npm run dev -w @packages/api",
+    "start:api": "npm start -w @packages/api",
+    "dev:creator-app": "npm run dev -w @packages/creator-app",
+    "start:creator-app": "npm start -w @packages/creator-app",
+    "build:creator-app": "npm run build -w @packages/creator-app",
+    "preview:creator-app": "npm run preview -w @packages/creator-app",
+    "dev:viewer-app": "npm run dev -w @packages/viewer-app",
+    "start:viewer-app": "npm start -w @packages/viewer-app",
+    "build:viewer-app": "npm run build -w @packages/viewer-app",
+    "preview:viewer-app": "npm run preview -w @packages/viewer-app"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "workspaces": [
+    "packages/api",
+    "packages/creator-app",
+    "packages/viewer-app"
+  ]
+}
