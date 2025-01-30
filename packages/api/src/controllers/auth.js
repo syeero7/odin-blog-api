@@ -27,11 +27,8 @@ export const registerUser = [
 ];
 
 export const loginUser = (req, res, next) => {
-  passport.authenticate("local", { session: false }, (error, user) => {
-    if (error || !user) {
-      console.log(error);
-      return res.status(400).json({ message: "An error occurred" });
-    }
+  passport.authenticate("local", { session: false }, (error, user, info) => {
+    if (error || !user) return res.status(400).json(info);
 
     req.login(user, { session: false }, (error) => {
       if (error) return next(error);
