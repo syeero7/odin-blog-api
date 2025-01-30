@@ -31,7 +31,6 @@ passport.use(
     },
     async (payload, done) => {
       try {
-        console.log(payload);
         const user = await getUserById(payload.userId);
 
         done(null, user);
