@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/auth", routes.auth);
+app.use("/posts", middleware.authenticate, routes.post);
 
 app.use(middleware.errorHandler);
 

@@ -31,3 +31,21 @@ export const validateUser = [
     })
     .withMessage("Author passcode is incorrect"),
 ];
+
+export const validatePost = [
+  body("title")
+    .trim()
+    .isLength({ min: 1, max: 20 })
+    .withMessage(`Title ${lengthErr(20)}`),
+  body("content")
+    .trim()
+    .isLength({ min: 1, max: 300 })
+    .withMessage(`Content ${lengthErr(300)}`),
+];
+
+export const validateComment = [
+  body("comment")
+    .trim()
+    .isLength({ min: 1, max: 100 })
+    .withMessage(`Comment ${lengthErr(100)}`),
+];
