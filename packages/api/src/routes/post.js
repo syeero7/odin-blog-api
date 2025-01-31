@@ -15,24 +15,25 @@ import {
   updateCommentPut,
   deleteComment,
 } from "../controllers/post.js";
+import verifyAuthor from "../middleware/verifyAuthor.js";
 
 const router = Router();
 
 router.get("/published", getAllPublishedPosts);
 router.get("/published/:postId", getPublishedPost);
 router.get("/published/:postId/comments", getPublishedPostWithComments);
-router.get("/", getAllPosts);
-router.get("/:postId", getPost);
-router.get("/:postId/comments", getPostWithComments);
+router.get("/", verifyAuthor, getAllPosts);
+router.get("/:postId", verifyAuthor, getPost);
+router.get("/:postId/comments", verifyAuthor, getPostWithComments);
 
-router.post("/", createPost);
+router.post("/", verifyAuthor, createPost);
 router.post("/:postId/comments", createCommentPost);
 
-router.put("/:postId", updatePostPut);
-router.put("/:postId/status", updatePostStatusPut);
+router.put("/:postId", verifyAuthor, updatePostPut);
+router.put("/:postId/status", verifyAuthor, updatePostStatusPut);
 router.put("/comments/:commentId", updateCommentPut);
 
-router.delete("/:postId", deletePost);
+router.delete("/:postId", verifyAuthor, deletePost);
 router.delete("/comments/:commentId", deleteComment);
 
 export default router;
