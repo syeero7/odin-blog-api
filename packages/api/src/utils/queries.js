@@ -60,6 +60,14 @@ export const getPostById = async (id, includeComments = false) => {
   });
 };
 
+export const getPublishedPostById = async (id, includeComments = false) => {
+  id = parseInt(id);
+  return await prisma.post.findUnique({
+    where: { id, isPublished: true },
+    include: { comments: includeComments },
+  });
+};
+
 export const getAllPostsByAuthorId = async (authorId) => {
   return prisma.post.findMany({ where: { authorId } });
 };
