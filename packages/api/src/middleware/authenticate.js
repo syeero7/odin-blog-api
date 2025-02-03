@@ -1,7 +1,7 @@
 import passport from "passport";
 
 const authenticate = (req, res, next) => {
-  if (!req.user && req.method === "GET") return next();
+  if (!req.headers.authorization && req.method === "GET") return next();
   passport.authenticate("jwt", { session: false })(req, res, next);
 };
 
