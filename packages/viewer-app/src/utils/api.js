@@ -41,7 +41,7 @@ export const getPosts = async () => {
 };
 
 export const getPost = async (postId) => {
-  return await handleFetch(`/api/posts/${postId}/comments`);
+  return await handleFetch(`/api/posts/published/${postId}/comments`);
 };
 
 export const createComment = async (postId, body) => {
