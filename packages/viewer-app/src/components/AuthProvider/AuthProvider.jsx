@@ -31,7 +31,10 @@ function AuthProvider({ children }) {
 }
 
 AuthProvider.propTypes = {
-  children: propTypes.element,
+  children: propTypes.oneOfType([
+    propTypes.arrayOf(propTypes.element),
+    propTypes.element,
+  ]).isRequired,
 };
 
 export default AuthProvider;
