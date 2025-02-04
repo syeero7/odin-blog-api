@@ -1,8 +1,13 @@
-import { Form, Link } from "react-router-dom";
+import { Form, Link, Navigate } from "react-router-dom";
 import propTypes from "prop-types";
 import InputField from "../InputField/InputField";
+import { useAuth } from "../AuthProvider/AuthProvider";
 
 function LoginForm({ children }) {
+  const { token } = useAuth();
+
+  if (token) return <Navigate to="/" replace />;
+
   return (
     <>
       <Form method="post">

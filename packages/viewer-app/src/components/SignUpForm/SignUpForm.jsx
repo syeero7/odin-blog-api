@@ -1,10 +1,14 @@
-import { Form, Link } from "react-router-dom";
+import { Form, Link, Navigate } from "react-router-dom";
 import { useState } from "react";
 import propTypes from "prop-types";
 import InputField from "../InputField/InputField";
+import { useAuth } from "../AuthProvider/AuthProvider";
 
 function SignUpForm({ children }) {
   const [isChecked, setIsChecked] = useState(false);
+  const { token } = useAuth();
+
+  if (token) return <Navigate to="/" replace />;
 
   return (
     <>
