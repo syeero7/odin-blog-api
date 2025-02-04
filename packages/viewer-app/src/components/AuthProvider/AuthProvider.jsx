@@ -7,7 +7,7 @@ import { LOCAL_STORAGE_KEY, getItem } from "../../utils/localStorage";
 const AuthContext = createContext({
   token: "",
   onLogout: () => {},
-  isAuthor: false,
+  userid: null,
 });
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -20,7 +20,7 @@ function AuthProvider({ children }) {
 
   const value = {
     token: user.token,
-    isAuthor: user.author,
+    userid: user.id,
     onLogout: () => {
       setUser({});
       handleLogout();
