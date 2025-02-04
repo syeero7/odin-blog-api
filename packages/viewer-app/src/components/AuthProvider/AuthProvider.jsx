@@ -1,13 +1,18 @@
 import { createContext, useContext, useState } from "react";
 import propTypes from "prop-types";
 
-import { handleLogout } from "../../utils/api";
-import { LOCAL_STORAGE_KEY, getItem } from "../../utils/localStorage";
+import {
+  LOCAL_STORAGE_KEY,
+  getItem,
+  setItem,
+  removeItem,
+} from "../../utils/localStorage";
 
 const AuthContext = createContext({
   token: "",
-  onLogout: () => {},
   userid: null,
+  onLogout: () => {},
+  onLogin: () => {},
 });
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -18,13 +23,21 @@ const getUser = () => getItem(LOCAL_STORAGE_KEY) || {};
 function AuthProvider({ children }) {
   const [user, setUser] = useState(getUser);
 
+  const handleLogin = (user) => {
+    setItem(LOCAL_STORAGE_KEY, user);
+    setUser(getUser());
+  };
+
+  const handleLogout = () => {
+    setUser({});
+    removeItem(LOCAL_STORAGE_KEY);
+  };
+
   const value = {
     token: user.token,
     userid: user.id,
-    onLogout: () => {
-      setUser({});
-      handleLogout();
-    },
+    onLogout: handleLogout,
+    onLogin: handleLogin,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
