@@ -35,7 +35,7 @@ export const loginUser = (req, res, next) => {
 
       const token = jwt.sign({ userId: user.id }, process.env.SECRET);
 
-      res.json({ token, author: user.isAuthor });
+      res.json({ token, author: user.isAuthor, id: user.id });
     });
   })(req, res, next);
 };
