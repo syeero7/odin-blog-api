@@ -1,15 +1,11 @@
-import {
-  removeItem,
-  setItem,
-  getItem,
-  LOCAL_STORAGE_KEY,
-} from "./localStorage";
+import { getItem, LOCAL_STORAGE_KEY } from "./localStorage";
 
 const DEFAULT_OPTIONS = { headers: { "Content-type": "application/json" } };
 const handleFetch = async (url, options) => {
   if (options?.body) options.body = JSON.stringify(options.body);
-  if (options?.headers)
-    options.headers = { ...DEFAULT_OPTIONS, ...options.headers };
+  if (options?.headers) {
+    options.headers = { ...DEFAULT_OPTIONS.headers, ...options.headers };
+  }
 
   const response = await fetch(url, { ...DEFAULT_OPTIONS, ...options });
   if (!response.ok) throw response;
@@ -18,16 +14,8 @@ const handleFetch = async (url, options) => {
 
 // authentication
 
-export const handleLogout = () => removeItem(LOCAL_STORAGE_KEY);
-
 export const handleLogin = async (body) => {
-  const response = await handleFetch("/api/auth/login", {
-    method: "POST",
-    body,
-  });
-
-  const data = await response.json();
-  setItem(LOCAL_STORAGE_KEY, data);
+  return await handleFetch("/api/auth/login", { method: "POST", body });
 };
 
 export const handleRegister = async (body) => {
