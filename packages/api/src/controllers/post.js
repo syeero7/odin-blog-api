@@ -9,7 +9,7 @@ export const createPost = [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ errors: errors.mapped() });
     }
     const { title, content, createdAt, isPublished } = req.body;
 
@@ -34,7 +34,7 @@ export const updatePostPut = [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ errors: errors.mapped() });
     }
     const { title, content, createdAt } = req.body;
 
@@ -79,7 +79,7 @@ export const createCommentPost = [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ errors: errors.mapped() });
     }
 
     const comment = await db.createComment(
@@ -97,7 +97,7 @@ export const updateCommentPut = [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ errors: errors.mapped() });
     }
 
     const comment = await db.updateComment(

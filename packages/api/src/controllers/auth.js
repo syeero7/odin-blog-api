@@ -12,7 +12,7 @@ export const registerUser = [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ errors: errors.mapped() });
     }
 
     const { email, password, isAuthor } = req.body;
@@ -28,7 +28,7 @@ export const registerUser = [
 
 export const loginUser = (req, res, next) => {
   passport.authenticate("local", { session: false }, (error, user, info) => {
-    if (error || !user) return res.status(400).json(info);
+    if (error || !user) return sendErrors(res, info.message);
 
     req.login(user, { session: false }, (error) => {
       if (error) return next(error);
@@ -39,3 +39,12 @@ export const loginUser = (req, res, next) => {
     });
   })(req, res, next);
 };
+
+function sendErrors(res, message) {
+  const errors = {};
+
+  if (message.match(/user/i)) errors.email = message;
+  if (message.match(/password/i)) errors.password = message;
+
+  return res.status(400).json({ errors });
+}
