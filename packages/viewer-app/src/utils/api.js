@@ -1,25 +1,29 @@
 import { getItem, LOCAL_STORAGE_KEY } from "./localStorage";
 
 const DEFAULT_OPTIONS = { headers: { "Content-type": "application/json" } };
-const handleFetch = async (url, options) => {
+const handleFetch = async (url, options, throwResponse = true) => {
   if (options?.body) options.body = JSON.stringify(options.body);
   if (options?.headers) {
     options.headers = { ...DEFAULT_OPTIONS.headers, ...options.headers };
   }
 
   const response = await fetch(url, { ...DEFAULT_OPTIONS, ...options });
-  if (!response.ok) throw response;
+  if (!response.ok && throwResponse) throw response;
   return response;
 };
 
 // authentication
 
 export const handleLogin = async (body) => {
-  return await handleFetch("/api/auth/login", { method: "POST", body });
+  return await handleFetch("/api/auth/login", { method: "POST", body }, false);
 };
 
 export const handleRegister = async (body) => {
-  await handleFetch("/api/auth/register", { method: "POST", body });
+  return await handleFetch(
+    "/api/auth/register",
+    { method: "POST", body },
+    false
+  );
 };
 
 // posts
