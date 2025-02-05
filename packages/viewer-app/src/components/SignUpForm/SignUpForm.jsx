@@ -1,26 +1,43 @@
-import { Form, Link, Navigate } from "react-router-dom";
+import { Form, Link, Navigate, useActionData } from "react-router-dom";
 import { useState } from "react";
-import propTypes from "prop-types";
 import InputField from "../InputField/InputField";
 import { useAuth } from "../AuthProvider/AuthProvider";
 
-function SignUpForm({ children }) {
+function SignUpForm() {
   const [isChecked, setIsChecked] = useState(false);
+  const data = useActionData();
   const { token } = useAuth();
 
   if (token) return <Navigate to="/" replace />;
+  if (data?.user) return <Navigate to="/login" replace />;
+
+  const errors = data?.errors;
 
   return (
     <>
       <Form method="post">
         <h1>Create an account</h1>
 
-        <InputField label="Email" type="email" name="email" />
-        <InputField label="Password" type="password" name="password" />
+        <InputField
+          label="Email"
+          type="email"
+          name="email"
+          errorMessage={errors?.email?.msg}
+          autoComplete="username"
+        />
+        <InputField
+          label="Password"
+          type="password"
+          name="password"
+          errorMessage={errors?.password?.msg}
+          autoComplete="new-password"
+        />
         <InputField
           label="Confirm Password"
           type="password"
           name="confirmPassword"
+          errorMessage={errors?.confirmPassword?.msg}
+          autoComplete="new-password"
         />
         <InputField
           label="Register as an author"
@@ -35,6 +52,7 @@ function SignUpForm({ children }) {
             label="Author Passcode"
             type="password"
             name="authorPasscode"
+            errorMessage={errors?.authorPasscode?.msg}
           />
         )}
         <button type="submit">Sign up</button>
@@ -43,14 +61,8 @@ function SignUpForm({ children }) {
           Already have an account? <Link to="/login">Login</Link>
         </p>
       </Form>
-
-      {children}
     </>
   );
 }
-
-SignUpForm.propTypes = {
-  children: propTypes.element,
-};
 
 export default SignUpForm;

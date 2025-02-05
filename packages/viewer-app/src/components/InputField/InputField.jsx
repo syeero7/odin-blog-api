@@ -1,6 +1,14 @@
 import propTypes from "prop-types";
 
-function InputField({ label, name, type = "text", required = true, onChange }) {
+function InputField({
+  label,
+  name,
+  type,
+  errorMessage,
+  required = true,
+  onChange,
+  autoComplete,
+}) {
   return (
     <div>
       <label>
@@ -15,9 +23,12 @@ function InputField({ label, name, type = "text", required = true, onChange }) {
           name={name}
           required={required || null}
           onChange={onChange || null}
+          autoComplete={autoComplete || null}
         />
         {type === "checkbox" && <span> {label}</span>}
       </label>
+      <br />
+      {errorMessage && <span>* {errorMessage}</span>}
     </div>
   );
 }
@@ -25,9 +36,11 @@ function InputField({ label, name, type = "text", required = true, onChange }) {
 InputField.propTypes = {
   label: propTypes.string.isRequired,
   name: propTypes.string.isRequired,
-  type: propTypes.string,
+  type: propTypes.string.isRequired,
+  errorMessage: propTypes.string,
   required: propTypes.bool,
   onChange: propTypes.func,
+  autoComplete: propTypes.string,
 };
 
 export default InputField;
