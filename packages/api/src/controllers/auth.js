@@ -21,7 +21,7 @@ export const registerUser = [
       if (error) return next(error);
 
       await createUser(email, hashedPassword, isAuthor);
-      res.sendStatus(201);
+      res.status(201).json({ user: { email }, message: "New user created" });
     });
   },
 ];
