@@ -11,6 +11,7 @@ function CommentSection({ comments }) {
 
   const handleSubmit = (e) => {
     setCurrentEditId(null);
+    setTimeout(() => e.target.reset(), 0);
 
     if (!userid) {
       e.preventDefault();
@@ -124,6 +125,8 @@ function Comment({ id, content, user, currentEditId, setCurrentEditId }) {
             onSubmit={(e) => {
               if (!confirm("Are you sure you want to delete this comment?")) {
                 e.preventDefault();
+              } else {
+                setCurrentEditId(null);
               }
             }}
           >
