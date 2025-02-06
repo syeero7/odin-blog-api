@@ -1,4 +1,5 @@
 import propTypes from "prop-types";
+import styles from "./InputField.module.css";
 
 function InputField({
   label,
@@ -10,15 +11,11 @@ function InputField({
   autoComplete,
 }) {
   return (
-    <div>
-      <label>
-        {type !== "checkbox" && (
-          <>
-            <span>{label}</span>
-            <br />
-          </>
-        )}
+    <div className={styles.container}>
+      <label className={type === "checkbox" ? styles.checkbox : null}>
+        {type !== "checkbox" && <span>{label}</span>}
         <input
+          className={type !== "checkbox" ? styles.field : null}
           type={type}
           name={name}
           required={required || null}
@@ -27,8 +24,12 @@ function InputField({
         />
         {type === "checkbox" && <span> {label}</span>}
       </label>
-      <br />
-      {errorMessage && <span>* {errorMessage}</span>}
+
+      {errorMessage && (
+        <span aria-live="polite" className={styles.error}>
+          * {errorMessage}
+        </span>
+      )}
     </div>
   );
 }
