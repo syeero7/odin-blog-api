@@ -2,6 +2,7 @@ import { Form, Link, Navigate, useActionData } from "react-router-dom";
 import { useState } from "react";
 import InputField from "../InputField/InputField";
 import { useAuth } from "../AuthProvider/AuthProvider";
+import styles from "./SignUpForm.module.css";
 
 function SignUpForm() {
   const [isChecked, setIsChecked] = useState(false);
@@ -11,32 +12,35 @@ function SignUpForm() {
   if (token) return <Navigate to="/" replace />;
   if (data?.user) return <Navigate to="/login" replace />;
 
-  const errors = data?.errors;
+  const errors = data?.errors.reduce((acc, err) => {
+    acc[err.path] = err.msg;
+    return acc;
+  }, {});
 
   return (
-    <>
-      <Form method="post">
-        <h1>Create an account</h1>
+    <div className={styles.container}>
+      <Form method="post" className={styles.form}>
+        <h1 className={styles.center}>Create an account</h1>
 
         <InputField
           label="Email"
           type="email"
           name="email"
-          errorMessage={errors?.email?.msg}
+          errorMessage={errors?.email}
           autoComplete="username"
         />
         <InputField
           label="Password"
           type="password"
           name="password"
-          errorMessage={errors?.password?.msg}
+          errorMessage={errors?.password}
           autoComplete="new-password"
         />
         <InputField
           label="Confirm Password"
           type="password"
           name="confirmPassword"
-          errorMessage={errors?.confirmPassword?.msg}
+          errorMessage={errors?.confirmPassword}
           autoComplete="new-password"
         />
         <InputField
@@ -52,16 +56,18 @@ function SignUpForm() {
             label="Author Passcode"
             type="password"
             name="authorPasscode"
-            errorMessage={errors?.authorPasscode?.msg}
+            errorMessage={errors?.authorPasscode}
           />
         )}
-        <button type="submit">Sign up</button>
+        <button type="submit" className={styles.button}>
+          Sign up
+        </button>
 
-        <p>
+        <p className={styles.center}>
           Already have an account? <Link to="/login">Login</Link>
         </p>
       </Form>
-    </>
+    </div>
   );
 }
 
