@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  justify-content: end;
+}
+
+.navbar {
+  padding: 0.2em;
+  border-bottom: 2px hsl(240, 5%, 64.9%) solid;
+}
+
+.listItem {
+  display: flex;
+}
+
+.link {
+  padding: 0.25em 1rem;
+}
+
+.link:hover,
+.link:focus-visible,
+.link:active {
+  text-decoration: underline;
+}
+
+.button {
+  background-color: var(--white);
+  border-radius: var(--radius);
+  padding: 0.25em 1rem;
+}
+
+.button:active {
+  background-color: var(--black);
+  color: hsl(0, 0%, 98%);
+}
