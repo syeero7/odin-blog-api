@@ -2,6 +2,7 @@ import { useAuth } from "../AuthProvider/AuthProvider";
 import { Link, Form } from "react-router-dom";
 import propTypes from "prop-types";
 import { useState } from "react";
+import styles from "./CommentSection.module.css";
 
 function CommentSection({ comments }) {
   const [showError, setShowError] = useState(false);
@@ -23,13 +24,13 @@ function CommentSection({ comments }) {
 
   return (
     <section id="comments">
-      <header>
+      <header className={styles.header}>
         <h2>
           {comments.length > 0 && comments.length} Comment
           {comments.length > 1 && "s"}
         </h2>
         <Form method="post" action="comments" onSubmit={handleSubmit}>
-          <div>
+          <div className={styles.textareaContainer}>
             <textarea
               name="comment"
               placeholder="Add a comment"
@@ -37,10 +38,9 @@ function CommentSection({ comments }) {
               maxLength="100"
               required
             ></textarea>
-            <br />
             {showError && (
-              <span aria-live="polite">
-                Please <Link>login</Link> to leave a comment
+              <span aria-live="polite" className={styles.error}>
+                * Please <Link>login</Link> to leave a comment
               </span>
             )}
           </div>
@@ -51,7 +51,7 @@ function CommentSection({ comments }) {
 
       <hr />
       {comments.length ? (
-        <ul>
+        <ul className={styles.list}>
           {comments.map((comment) => (
             <li key={comment.id}>
               <Comment
@@ -81,35 +81,40 @@ function Comment({ id, content, user, currentEditId, setCurrentEditId }) {
   const toggle = () => setShowEdit((e) => !e);
 
   return showEdit && id === currentEditId ? (
-    <Form method="put" action={`comments/${id}/update`} onSubmit={toggle}>
-      <div>
-        <textarea
-          type="text"
-          name="comment"
-          aria-label="edit comment"
-          maxLength="100"
-          required
-          defaultValue={content}
-          autoFocus
-        ></textarea>
-      </div>
-      <button name="update" type="submit">
-        Update
-      </button>
-      <button type="button" onClick={toggle}>
-        Cancel
-      </button>
-    </Form>
+    <div className={styles.comment}>
+      <Form method="put" action={`comments/${id}/update`} onSubmit={toggle}>
+        <div className={styles.textareaContainer}>
+          <textarea
+            type="text"
+            name="comment"
+            aria-label="edit comment"
+            maxLength="100"
+            required
+            defaultValue={content}
+            autoFocus
+          ></textarea>
+        </div>
+        <div className={styles.btnContainer}>
+          <button name="update" type="submit" className={styles.update}>
+            Update
+          </button>
+          <button type="button" onClick={toggle} className={styles.cancel}>
+            Cancel
+          </button>
+        </div>
+      </Form>
+    </div>
   ) : (
-    <article>
+    <article className={styles.comment}>
       <p>{content}</p>
       {user && (
-        <div>
+        <div className={styles.btnContainer}>
           <button
             onClick={() => {
               setCurrentEditId(id);
               toggle();
             }}
+            className={styles.edit}
           >
             Edit
           </button>
@@ -122,7 +127,7 @@ function Comment({ id, content, user, currentEditId, setCurrentEditId }) {
               }
             }}
           >
-            <button name="delete" type="submit">
+            <button name="delete" type="submit" className={styles.delete}>
               Delete
             </button>
           </Form>

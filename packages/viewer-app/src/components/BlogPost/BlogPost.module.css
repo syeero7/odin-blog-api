@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.post {
+  display: grid;
+  min-width: 95vw;
+  max-width: 70ch;
+  grid-template-rows: min-content;
+  padding: 1rem;
+}
+
+.header {
+  padding: 1rem 0;
+}
+
+.header time {
+  font-size: 0.7em;
+  color: hsl(240, 5.2%, 33.9%);
+}
+
+@media screen and (min-width: 40em) {
+  .post {
+    min-width: 40em;
+  }
+}
