@@ -1,27 +1,28 @@
 import { Link, useLoaderData } from "react-router-dom";
 import propTypes from "prop-types";
+import styles from "./PostList.module.css";
 
 export default function PostList() {
   const { posts } = useLoaderData();
   return posts.length ? (
-    <ul>
+    <ul className={styles.container}>
       {posts.map((post) => (
-        <li key={post.id}>
+        <li key={post.id} className={styles.card}>
           <Post {...post} />
         </li>
       ))}
     </ul>
   ) : (
-    <p>No posts available</p>
+    <p className={styles.noPosts}>No posts available</p>
   );
 }
 
 function Post({ id, title, content }) {
   return (
-    <Link to={`posts/${id}`}>
+    <Link to={`posts/${id}`} className={styles.link}>
       <article>
-        <p>{title}</p>
-        <p>
+        <p className={styles.title}>{title}</p>
+        <p className={styles.content}>
           {content.length > 60 ? content.substring(0, 60) + "..." : content}
         </p>
       </article>

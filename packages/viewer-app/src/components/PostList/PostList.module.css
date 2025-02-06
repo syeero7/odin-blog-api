@@ -1,0 +1,43 @@
+.container {
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
+}
+
+.card {
+  box-shadow: hsl(240, 4.9%, 83.9%) 0 0 0 2px;
+  border-radius: var(--radius);
+  min-height: 7.5rem;
+  display: flex;
+}
+
+.card:hover,
+.card:active,
+.card:focus-within {
+  box-shadow: hsl(240, 5.3%, 26.1%) 0 0 0 3px;
+}
+
+.link:has(:focus-visible) .title {
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+.content {
+  font-size: 0.7em;
+}
+
+.link {
+  flex: 1;
+  padding: 1rem;
+}
+
+.noPosts {
+  font-style: italic;
+}
+
+@media screen and (min-width: 36em) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
