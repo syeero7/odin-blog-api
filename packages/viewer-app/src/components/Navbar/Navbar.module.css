@@ -32,3 +32,10 @@
   background-color: var(--black);
   color: hsl(0, 0%, 98%);
 }
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    background-color: var(--black);
+    color: hsl(0, 0%, 98%);
+  }
+}
