@@ -1,6 +1,7 @@
 import { Form, Link, Navigate, useActionData } from "react-router-dom";
 import InputField from "../InputField/InputField";
 import { useAuth } from "../AuthProvider/AuthProvider";
+import styles from "./LoginForm.module.css";
 
 function LoginForm() {
   const { token, onLogin } = useAuth();
@@ -15,9 +16,9 @@ function LoginForm() {
   const errors = data?.errors;
 
   return (
-    <>
-      <Form method="post">
-        <h1>Log in to your account</h1>
+    <div className={styles.container}>
+      <Form method="post" className={styles.form}>
+        <h1 className={styles.center}>Log in to your account</h1>
 
         <InputField
           label="Email"
@@ -33,13 +34,15 @@ function LoginForm() {
           errorMessage={errors?.password}
           autoComplete="current-password"
         />
-        <button type="submit">Login</button>
+        <button type="submit" className={styles.button}>
+          Login
+        </button>
 
-        <p>
+        <p className={styles.center}>
           Don&apos;t have an account? <Link to="/register">Sign Up</Link>
         </p>
       </Form>
-    </>
+    </div>
   );
 }
 
