@@ -27,7 +27,7 @@ export default PostList;
 function Post({ id, title, content, isPublished }) {
   return (
     <article>
-      <Link to={`posts/${id}`}>
+      <Link to={id.toString()}>
         <p>{title}</p>
         <p>State: {isPublished ? "published" : "unpublished"}</p>
         <p>
