@@ -7,10 +7,10 @@ function LoginForm() {
   const { token, onLogin } = useAuth();
   const data = useActionData();
 
-  if (token) return <Navigate to="/" replace />;
+  if (token) return <Navigate to="/posts" replace />;
   if (data?.token) {
     setTimeout(() => onLogin(data), 0);
-    return <Navigate to="/" replace />;
+    return <Navigate to="/posts" replace />;
   }
 
   const errors = data?.errors;
