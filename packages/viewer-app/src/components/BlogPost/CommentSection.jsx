@@ -1,16 +1,18 @@
-import { useAuth } from "../AuthProvider/AuthProvider";
 import { Link, Form } from "react-router-dom";
-import propTypes from "prop-types";
 import { useState } from "react";
+import propTypes from "prop-types";
+import { useAuth } from "../AuthProvider/AuthProvider";
 import styles from "./CommentSection.module.css";
 
 function CommentSection({ comments }) {
   const [showError, setShowError] = useState(false);
-  const [currentEditId, setCurrentEditId] = useState(null);
+  const [editId, setEditId] = useState(null);
   const { userid } = useAuth();
 
+  const clearEditId = () => setEditId(null);
+
   const handleSubmit = (e) => {
-    setCurrentEditId(null);
+    if (editId !== null) clearEditId();
     setTimeout(() => e.target.reset(), 0);
 
     if (!userid) {
@@ -59,8 +61,9 @@ function CommentSection({ comments }) {
                 user={userid == comment.authorId}
                 id={comment.id}
                 content={comment.content}
-                currentEditId={currentEditId}
-                setCurrentEditId={setCurrentEditId}
+                editId={editId}
+                setEditId={setEditId}
+                clearEditId={clearEditId}
               />
             </li>
           ))}
@@ -76,14 +79,14 @@ CommentSection.propTypes = {
   comments: propTypes.arrayOf(propTypes.object),
 };
 
-function Comment({ id, content, user, currentEditId, setCurrentEditId }) {
-  const [showEdit, setShowEdit] = useState(false);
-
-  const toggle = () => setShowEdit((e) => !e);
-
-  return showEdit && id === currentEditId ? (
+function Comment({ id, content, user, editId, setEditId, clearEditId }) {
+  return id === editId ? (
     <div className={styles.comment}>
-      <Form method="put" action={`comments/${id}/update`} onSubmit={toggle}>
+      <Form
+        method="put"
+        action={`comments/${id}/update`}
+        onSubmit={clearEditId}
+      >
         <div className={styles.textareaContainer}>
           <textarea
             type="text"
@@ -95,11 +98,12 @@ function Comment({ id, content, user, currentEditId, setCurrentEditId }) {
             autoFocus
           ></textarea>
         </div>
+
         <div className={styles.btnContainer}>
-          <button name="update" type="submit" className={styles.update}>
+          <button type="submit" className={styles.update}>
             Update
           </button>
-          <button type="button" onClick={toggle} className={styles.cancel}>
+          <button type="button" onClick={clearEditId} className={styles.cancel}>
             Cancel
           </button>
         </div>
@@ -112,13 +116,13 @@ function Comment({ id, content, user, currentEditId, setCurrentEditId }) {
         <div className={styles.btnContainer}>
           <button
             onClick={() => {
-              setCurrentEditId(id);
-              toggle();
+              setEditId(id);
             }}
             className={styles.edit}
           >
             Edit
           </button>
+
           <Form
             action={`comments/${id}/delete`}
             method="delete"
@@ -126,11 +130,11 @@ function Comment({ id, content, user, currentEditId, setCurrentEditId }) {
               if (!confirm("Are you sure you want to delete this comment?")) {
                 e.preventDefault();
               } else {
-                setCurrentEditId(null);
+                clearEditId();
               }
             }}
           >
-            <button name="delete" type="submit" className={styles.delete}>
+            <button type="submit" className={styles.delete}>
               Delete
             </button>
           </Form>
@@ -144,8 +148,9 @@ Comment.propTypes = {
   id: propTypes.number.isRequired,
   content: propTypes.string.isRequired,
   user: propTypes.bool.isRequired,
-  currentEditId: propTypes.number,
-  setCurrentEditId: propTypes.func.isRequired,
+  editId: propTypes.number,
+  setEditId: propTypes.func.isRequired,
+  clearEditId: propTypes.func.isRequired,
 };
 
 export default CommentSection;
