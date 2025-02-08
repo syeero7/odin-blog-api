@@ -15,18 +15,31 @@ function InputField({
   return (
     <div className={styles.container}>
       <label className={type === "checkbox" ? styles.checkbox : null}>
-        {type !== "checkbox" && <span>{label}</span>}
-        <input
-          className={type !== "checkbox" ? styles.field : null}
-          type={type}
-          name={name}
-          required={required || null}
-          onChange={onChange || null}
-          autoComplete={autoComplete || null}
-          value={value || null}
-          checked={type === "checkbox" ? checked : null}
-        />
-        {type === "checkbox" && <span> {label}</span>}
+        {type === "checkbox" ? (
+          <>
+            <input
+              type={type}
+              name={name}
+              required={required || null}
+              onChange={onChange || null}
+              defaultChecked={checked}
+            />
+            <span> {label}</span>
+          </>
+        ) : (
+          <>
+            <span>{label}</span>
+            <input
+              className={styles.field}
+              type={type}
+              name={name}
+              required={required || null}
+              onChange={onChange || null}
+              autoComplete={autoComplete || null}
+              defaultValue={value || null}
+            />
+          </>
+        )}
       </label>
 
       {errorMessage && (

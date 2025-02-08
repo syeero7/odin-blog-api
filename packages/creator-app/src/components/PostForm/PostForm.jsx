@@ -24,19 +24,21 @@ function PostForm({ method, values = {}, actionData = {} }) {
             required
             maxLength="300"
             name="content"
-            value={values.content || null}
+            defaultValue={values.content || null}
           ></textarea>
         </label>
         {errors.content && <span aria-live="polite">* {errors.content}</span>}
       </div>
 
-      <InputField
-        type="checkbox"
-        label="Publish"
-        name="isPublished"
-        checked={values.isPublished && values.isPublished}
-        required={false}
-      />
+      {method === "POST" && (
+        <InputField
+          type="checkbox"
+          label="Publish"
+          name="isPublished"
+          required={false}
+        />
+      )}
+
       <button type="submit">{method === "PUT" ? "Update" : "Create"}</button>
     </Form>
   );
