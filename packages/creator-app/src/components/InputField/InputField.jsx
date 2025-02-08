@@ -9,6 +9,8 @@ function InputField({
   required = true,
   onChange,
   autoComplete,
+  value,
+  checked = false,
 }) {
   return (
     <div className={styles.container}>
@@ -21,6 +23,8 @@ function InputField({
           required={required || null}
           onChange={onChange || null}
           autoComplete={autoComplete || null}
+          value={value || null}
+          checked={type === "checkbox" ? checked : null}
         />
         {type === "checkbox" && <span> {label}</span>}
       </label>
@@ -42,6 +46,8 @@ InputField.propTypes = {
   required: propTypes.bool,
   onChange: propTypes.func,
   autoComplete: propTypes.string,
+  value: propTypes.string,
+  checked: propTypes.bool,
 };
 
 export default InputField;
