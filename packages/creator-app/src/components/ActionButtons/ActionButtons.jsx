@@ -3,12 +3,21 @@ import propTypes from "prop-types";
 
 function ActionButtons({ id, isPublished }) {
   const navigate = useNavigate();
+  const postURL = `/posts/${id}/`;
 
   return (
     <div>
-      <button onClick={() => navigate(`${id}/edit`)}>Edit</button>
+      <button onClick={() => navigate(`${postURL}update`)}>Edit</button>
       <TogglePostState state={isPublished} postId={id} />
-      <Form action={`${id}/delete`} method="delete">
+      <Form
+        action={`${postURL}delete`}
+        method="delete"
+        onSubmit={(e) => {
+          if (!confirm("Are you sure you want to delete this post?")) {
+            e.preventDefault();
+          }
+        }}
+      >
         <button type="submit">Delete</button>
       </Form>
     </div>
@@ -27,11 +36,12 @@ function TogglePostState({ state, postId }) {
     : state;
 
   return (
-    <fetcher.Form method="put" action={`${postId}/update-state`}>
+    <fetcher.Form method="put">
+      <input type="hidden" name="postId" value={postId} />
       <button
         type="submit"
         name="isPublished"
-        value={isPublished ? "true" : "false"}
+        value={isPublished ? "false" : "true"}
         aria-label={isPublished ? "unpublish the post" : "publish the post"}
       >
         {isPublished ? "unpublish" : "publish"}
