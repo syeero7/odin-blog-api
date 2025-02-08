@@ -1,4 +1,5 @@
 import prisma from "../config/prismaClient.js";
+import { isTrue } from "./isTrue.js";
 
 export const getUserById = async (id) => {
   return await prisma.user.findUnique({ where: { id } });
@@ -9,7 +10,7 @@ export const getUserByEmail = async (email) => {
 };
 
 export const createUser = async (email, password, isAuthor) => {
-  isAuthor = isAuthor === "true";
+  isAuthor = isTrue(isAuthor);
   await prisma.user.create({ data: { email, password, isAuthor } });
 };
 
@@ -20,7 +21,7 @@ export const createPost = async (
   isPublished,
   authorId
 ) => {
-  isPublished = isPublished === "true";
+  isPublished = isTrue(isPublished);
 
   await prisma.post.create({
     data: {
@@ -35,7 +36,7 @@ export const createPost = async (
 
 export const updatePostPublishedStatus = async (isPublished, postId) => {
   postId = parseInt(postId);
-  isPublished = isPublished === "true";
+  isPublished = isTrue(isPublished);
   await prisma.post.update({ where: { id: postId }, data: { isPublished } });
 };
 

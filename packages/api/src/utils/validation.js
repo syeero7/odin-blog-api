@@ -1,5 +1,6 @@
 import { body } from "express-validator";
 import { getUserByEmail } from "./queries.js";
+import { isTrue } from "./isTrue.js";
 
 const lengthErr = (max, min = 1) => {
   return `must be between ${min} and ${max} characters`;
@@ -26,7 +27,7 @@ export const validateUser = [
   body("authorPasscode")
     .trim()
     .custom((value, { req }) => {
-      if (req.body.isAuthor !== "true") return true;
+      if (!isTrue(req.body.isAuthor)) return true;
       return value === process.env.AUTHOR_PASSCODE;
     })
     .withMessage("Author passcode is incorrect"),
