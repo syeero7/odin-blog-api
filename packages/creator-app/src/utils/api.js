@@ -44,15 +44,19 @@ export const getPost = async (postId) => {
 };
 
 export const createPost = async (body) => {
-  await handleFetch("/api/posts/", { method: "POST", ...getHeaders(), body });
+  return await handleFetch(
+    "/api/posts/",
+    { method: "POST", ...getHeaders(), body },
+    false
+  );
 };
 
 export const updatePost = async (postId, body) => {
-  await handleFetch(`/api/posts/${postId}/`, {
-    method: "PUT",
-    ...getHeaders(),
-    body,
-  });
+  return await handleFetch(
+    `/api/posts/${postId}/`,
+    { method: "PUT", ...getHeaders(), body },
+    false
+  );
 };
 
 export const updatePostStatus = async (postId, body) => {
@@ -69,6 +73,8 @@ export const deletePost = async (postId) => {
     ...getHeaders(),
   });
 };
+
+// comments
 
 export const createComment = async (postId, body) => {
   await handleFetch(`/api/posts/${postId}/comments`, {
