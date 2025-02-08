@@ -2,7 +2,11 @@ import { Form } from "react-router-dom";
 import propTypes from "prop-types";
 import InputField from "../InputField/InputField";
 
-function PostForm({ method, values = {}, errors = {} }) {
+function PostForm({ method, values = {}, actionData = {} }) {
+  const errors = Object.fromEntries(
+    actionData.errors?.map((err) => [err.path, err.msg]) || []
+  );
+
   return (
     <Form method={method}>
       <InputField
@@ -23,7 +27,7 @@ function PostForm({ method, values = {}, errors = {} }) {
             value={values.content || null}
           ></textarea>
         </label>
-        {errors.content && <span>* {errors.content}</span>}
+        {errors.content && <span aria-live="polite">* {errors.content}</span>}
       </div>
 
       <InputField
@@ -41,7 +45,7 @@ function PostForm({ method, values = {}, errors = {} }) {
 PostForm.propTypes = {
   method: propTypes.string.isRequired,
   values: propTypes.object,
-  errors: propTypes.object,
+  actionData: propTypes.object,
 };
 
 export default PostForm;
