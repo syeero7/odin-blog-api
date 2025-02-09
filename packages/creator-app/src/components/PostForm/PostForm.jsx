@@ -1,10 +1,11 @@
 import { Form } from "react-router-dom";
 import propTypes from "prop-types";
 import InputField from "../InputField/InputField";
+import styles from "./PostForm.module.css";
 
 function PostForm({ method, values = {}, errors = {} }) {
   return (
-    <Form method={method}>
+    <Form method={method} className={styles.form}>
       <InputField
         type="text"
         label="Title"
@@ -14,7 +15,7 @@ function PostForm({ method, values = {}, errors = {} }) {
       />
 
       <div>
-        <label>
+        <label className={styles.label}>
           <span>Content</span>
           <textarea
             required
@@ -24,7 +25,9 @@ function PostForm({ method, values = {}, errors = {} }) {
           ></textarea>
         </label>
         {errors.content && (
-          <span aria-live="polite">* {errors.content?.msg}</span>
+          <span aria-live="polite" className={styles.error}>
+            * {errors.content?.msg}
+          </span>
         )}
       </div>
 
@@ -36,8 +39,9 @@ function PostForm({ method, values = {}, errors = {} }) {
           required={false}
         />
       )}
-
-      <button type="submit">{method === "PUT" ? "Update" : "Create"}</button>
+      <div className={styles.container}>
+        <button type="submit">{method === "PUT" ? "Update" : "Create"}</button>
+      </div>
     </Form>
   );
 }

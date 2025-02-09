@@ -1,0 +1,25 @@
+.container {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  min-height: 85vh;
+  margin-top: 0.5em;
+}
+.container > div {
+  border: var(--light-gray) 3px solid;
+  border-radius: var(--radius);
+  padding: 0.8em 0 0.5em;
+}
+
+.container h1 {
+  text-align: center;
+  margin-bottom: 0.2em;
+}
+
+.container input[type="checkbox"] {
+  margin-bottom: 0.3em;
+}
+
+.container label:has(input[type="checkbox"]) {
+  transform: translateY(0.3em);
+}
