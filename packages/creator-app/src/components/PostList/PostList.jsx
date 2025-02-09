@@ -31,7 +31,7 @@ function Post({ id, title, content, isPublished }) {
         <p>{title}</p>
         <p>State: {isPublished ? "published" : "unpublished"}</p>
         <p>
-          {content.length > 60 ? content.substring(0, 60) + "..." : content}
+          {content.length > 120 ? content.substring(0, 120) + "..." : content}
         </p>
       </Link>
 

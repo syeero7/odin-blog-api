@@ -23,7 +23,7 @@ function Post({ id, title, content }) {
       <article>
         <p className={styles.title}>{title}</p>
         <p className={styles.content}>
-          {content.length > 60 ? content.substring(0, 60) + "..." : content}
+          {content.length > 120 ? content.substring(0, 120) + "..." : content}
         </p>
       </article>
     </Link>
