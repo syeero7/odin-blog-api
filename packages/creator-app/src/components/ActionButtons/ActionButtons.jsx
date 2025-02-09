@@ -1,13 +1,19 @@
 import { useNavigate, Form, useFetcher } from "react-router-dom";
 import propTypes from "prop-types";
+import styles from "./ActionButtons.module.css";
 
 function ActionButtons({ id, isPublished }) {
   const navigate = useNavigate();
   const postURL = `/posts/${id}/`;
 
   return (
-    <div>
-      <button onClick={() => navigate(`${postURL}update`)}>Edit</button>
+    <div className={styles.container}>
+      <button
+        className={styles.edit}
+        onClick={() => navigate(`${postURL}update`)}
+      >
+        Edit
+      </button>
       <TogglePostState state={isPublished} postId={id} />
       <Form
         action={`${postURL}delete`}
@@ -18,7 +24,9 @@ function ActionButtons({ id, isPublished }) {
           }
         }}
       >
-        <button type="submit">Delete</button>
+        <button style={styles.delete} type="submit">
+          Delete
+        </button>
       </Form>
     </div>
   );
@@ -39,12 +47,13 @@ function TogglePostState({ state, postId }) {
     <fetcher.Form method="put">
       <input type="hidden" name="postId" value={postId} />
       <button
+        className={styles.state}
         type="submit"
         name="isPublished"
         value={isPublished ? "false" : "true"}
         aria-label={isPublished ? "unpublish the post" : "publish the post"}
       >
-        {isPublished ? "unpublish" : "publish"}
+        {isPublished ? "Unpublish" : "Publish"}
       </button>
     </fetcher.Form>
   );

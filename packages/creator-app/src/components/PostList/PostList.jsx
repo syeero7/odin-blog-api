@@ -1,24 +1,24 @@
 import { Link, useLoaderData } from "react-router-dom";
 import propTypes from "prop-types";
-import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import ActionButtons from "../ActionButtons/ActionButtons";
+import styles from "./PostList.module.css";
 
 function PostList() {
   const { posts } = useLoaderData();
   return (
-    <PrivateRoute>
+    <>
       {posts.length ? (
-        <ul>
+        <ul className={styles.container}>
           {posts.map((post) => (
-            <li key={post.id}>
+            <li key={post.id} className={styles.listItem}>
               <Post {...post} />
             </li>
           ))}
         </ul>
       ) : (
-        <p>No posts available</p>
+        <p className={styles.noPost}>No posts available</p>
       )}
-    </PrivateRoute>
+    </>
   );
 }
 
@@ -26,11 +26,13 @@ export default PostList;
 
 function Post({ id, title, content, isPublished }) {
   return (
-    <article>
-      <Link to={id.toString()}>
-        <p>{title}</p>
-        <p>State: {isPublished ? "published" : "unpublished"}</p>
-        <p>
+    <article className={styles.card}>
+      <Link to={id.toString()} className={styles.link}>
+        <p className={styles.title}>{title}</p>
+        <p className={styles.state}>
+          State: {isPublished ? "published" : "unpublished"}
+        </p>
+        <p className={styles.content}>
           {content.length > 120 ? content.substring(0, 120) + "..." : content}
         </p>
       </Link>

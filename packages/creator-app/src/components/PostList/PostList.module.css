@@ -1,0 +1,58 @@
+.container {
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
+}
+
+.listItem {
+  box-shadow: var(--light-gray) 0 0 0 2px;
+  border-radius: var(--radius);
+  min-height: 7.5rem;
+  display: flex;
+}
+
+.listItem:hover,
+.listItem:active,
+.listItem:focus-within {
+  box-shadow: var(--charcoal-gray) 0 0 0 3px;
+}
+
+.title {
+  font-size: 1.2em;
+  font-family: var(--ff-serif);
+  font-weight: 500;
+}
+
+.content {
+  font-size: 0.9em;
+  white-space: pre-line;
+}
+
+.state {
+  margin: 0.4em 0;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.link + div {
+  margin-top: 0.5em;
+}
+
+.card {
+  padding: 0.7em;
+}
+
+.noPosts {
+  font-style: italic;
+}
+
+@media screen and (min-width: 36em) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card {
+    padding: 1rem;
+  }
+}
