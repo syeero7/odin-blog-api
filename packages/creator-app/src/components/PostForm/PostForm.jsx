@@ -18,7 +18,7 @@ function PostForm({ method, values = {}, errors = {} }) {
           <span>Content</span>
           <textarea
             required
-            maxLength="300"
+            maxLength="1000"
             name="content"
             defaultValue={values.content || null}
           ></textarea>

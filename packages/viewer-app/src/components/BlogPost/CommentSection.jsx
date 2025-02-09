@@ -38,7 +38,7 @@ function CommentSection({ comments }) {
               name="comment"
               placeholder="Add a comment"
               aria-label="add comment"
-              maxLength="100"
+              maxLength="300"
               required
             ></textarea>
             {showError && (
@@ -92,7 +92,7 @@ function Comment({ id, content, user, editId, setEditId, clearEditId }) {
             type="text"
             name="comment"
             aria-label="edit comment"
-            maxLength="100"
+            maxLength="300"
             required
             defaultValue={content}
             autoFocus

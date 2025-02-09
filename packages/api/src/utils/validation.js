@@ -36,17 +36,17 @@ export const validateUser = [
 export const validatePost = [
   body("title")
     .trim()
-    .isLength({ min: 1, max: 20 })
-    .withMessage(`Title ${lengthErr(20)}`),
+    .isLength({ min: 1, max: 50 })
+    .withMessage(`Title ${lengthErr(50)}`),
   body("content")
     .trim()
-    .isLength({ min: 1, max: 300 })
-    .withMessage(`Content ${lengthErr(300)}`),
+    .isLength({ min: 1, max: 1000 })
+    .withMessage(`Content ${lengthErr(1000)}`),
 ];
 
 export const validateComment = [
   body("comment")
     .trim()
-    .isLength({ min: 1, max: 100 })
-    .withMessage(`Comment ${lengthErr(100)}`),
+    .isLength({ min: 1, max: 300 })
+    .withMessage(`Comment ${lengthErr(300)}`),
 ];
