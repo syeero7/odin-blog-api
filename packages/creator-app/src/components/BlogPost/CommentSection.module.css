@@ -1,0 +1,106 @@
+.header {
+  display: grid;
+  gap: 0.5em;
+}
+
+.header > form {
+  display: grid;
+  padding: 0.5em;
+}
+
+.header + hr {
+  margin: 0.5em;
+}
+
+.header + hr + p {
+  margin: 1rem;
+  font-style: italic;
+}
+
+.header button {
+  max-width: fit-content;
+  justify-self: end;
+  background-color: var(--soft-white);
+  color: var(--charcoal-gray);
+  border-radius: var(--radius);
+  padding: 0.2em 1rem;
+  margin-top: 0.5em;
+}
+
+.header .textarea {
+  min-height: 5rem;
+  margin-bottom: 0.5em;
+}
+
+.textarea {
+  min-height: 2em;
+  padding: 0.7em;
+}
+
+.comment .textarea {
+  min-height: 5em;
+}
+
+.comment {
+  display: grid;
+  padding: 0.5em;
+  border: var(--light-gray) solid 1px;
+  box-shadow: var(--light-gray) 3px 3px;
+  position: relative;
+  min-height: 5rem;
+}
+
+.comment > p {
+  padding-bottom: calc(0.3em + 2em);
+}
+
+.comment > form {
+  display: grid;
+  position: relative;
+  padding-bottom: calc(0.3em + 2em);
+}
+
+.comment > form > .buttons {
+  transform: translateX(0.15em);
+}
+
+.buttons {
+  display: grid;
+  transform: translate(-0.5em, -0.5em);
+  gap: 0.5em;
+  justify-self: end;
+  max-width: fit-content;
+  grid-auto-flow: column;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.buttons button {
+  padding: 0.2em 0.7em;
+  border-radius: var(--radius);
+  background-color: var(--soft-white);
+  color: var(--charcoal-gray);
+  font-size: 0.85em;
+}
+
+.header button:focus-visible,
+.buttons button:focus-visible,
+.header button:active,
+.buttons button:active {
+  background-color: var(--charcoal-gray);
+  color: var(--soft-white);
+}
+
+.list {
+  display: grid;
+  gap: 0.2em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .header button:hover,
+  .buttons button:hover {
+    background-color: var(--charcoal-gray);
+    color: var(--soft-white);
+  }
+}

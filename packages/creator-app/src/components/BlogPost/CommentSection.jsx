@@ -1,6 +1,7 @@
 import { useState } from "react";
 import propTypes from "prop-types";
 import { Form } from "react-router-dom";
+import styles from "./CommentSection.module.css";
 
 function CommentSection({ comments }) {
   const [editId, setEditId] = useState(null);
@@ -14,13 +15,14 @@ function CommentSection({ comments }) {
 
   return (
     <section>
-      <header>
+      <header className={styles.header}>
         <h2>
           {comments.length > 0 && comments.length} Comment
           {comments.length > 1 && "s"}
         </h2>
         <Form action="comments" method="post" onSubmit={handleSubmit}>
           <textarea
+            className={styles.textarea}
             name="comment"
             placeholder="Add a comment"
             aria-label="add comment"
@@ -32,7 +34,7 @@ function CommentSection({ comments }) {
       </header>
       <hr />
       {comments.length ? (
-        <ul>
+        <ul className={styles.list}>
           {comments.map((comment) => (
             <li key={comment.id}>
               <Comment
@@ -58,13 +60,14 @@ CommentSection.propTypes = {
 
 function Comment({ id, content, editId, setEditId, clearEditId }) {
   return id === editId ? (
-    <div>
+    <div className={styles.comment}>
       <Form
         method="put"
         action={`comments/${id}/update`}
         onSubmit={clearEditId}
       >
         <textarea
+          className={styles.textarea}
           type="text"
           name="comment"
           aria-label="edit comment"
@@ -73,16 +76,21 @@ function Comment({ id, content, editId, setEditId, clearEditId }) {
           defaultValue={content}
           autoFocus
         ></textarea>
-        <button type="submit">Update</button>
-        <button type="button" onClick={clearEditId}>
-          Cancel
-        </button>
+
+        <div className={styles.buttons}>
+          <button type="submit" className={styles.update}>
+            Update
+          </button>
+          <button type="button" onClick={clearEditId} className={styles.cancel}>
+            Cancel
+          </button>
+        </div>
       </Form>
     </div>
   ) : (
-    <article>
+    <article className={styles.comment}>
       <p>{content}</p>
-      <div>
+      <div className={styles.buttons}>
         <button onClick={() => setEditId(id)}>Edit</button>
         <Form
           action={`comments/${id}/delete`}
