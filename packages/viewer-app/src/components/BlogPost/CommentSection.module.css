@@ -1,7 +1,6 @@
 .header {
   display: grid;
   gap: 0.5em;
-  margin-bottom: 0.5em;
 }
 
 .header > form {
@@ -9,103 +8,107 @@
   padding: 0.5em;
 }
 
+.header + hr {
+  margin: 0.5em;
+}
+
+.header + hr + p {
+  margin: 1rem;
+  font-style: italic;
+}
+
 .header button {
   max-width: fit-content;
   justify-self: end;
-  margin-right: 1rem;
-  background-color: hsl(141.9, 69.2%, 58%);
+  background-color: var(--soft-white);
+  color: var(--charcoal-gray);
   border-radius: var(--radius);
   padding: 0.2em 1rem;
-}
-
-.header button:active {
-  background-color: hsl(142.4, 71.8%, 29.2%);
+  margin-top: 0.5em;
 }
 
 .textareaContainer {
   display: grid;
-  padding: 0.5em;
 }
 .textareaContainer > textarea {
-  min-height: 5em;
+  min-height: 2em;
   padding: 0.7em;
 }
 
+.header textarea {
+  min-height: 5rem;
+  margin-bottom: 0.5em;
+}
+
 .error {
-  color: var(--red);
-  font-size: 0.7em;
+  color: var(--coral);
   margin: 0.4em 0;
 }
 
 .comment {
   display: grid;
+  padding: 0.5em;
+  border: var(--light-gray) solid 1px;
+  box-shadow: var(--light-gray) 3px 3px;
+  position: relative;
+  min-height: 5rem;
+}
+
+.comment .textareaContainer {
+  min-height: 5em;
 }
 
 .comment > p {
-  font-size: 0.85em;
+  padding-bottom: calc(0.3em + 2em);
 }
 
 .comment > form {
   display: grid;
+  position: relative;
+  padding-bottom: calc(0.3em + 2em);
 }
 
-.btnContainer {
+.comment > form > .buttons {
+  transform: translateX(0.15em);
+}
+
+.buttons {
   display: grid;
-  padding: 0.5em;
+  transform: translate(-0.5em, -0.5em);
   gap: 0.5em;
   justify-self: end;
   max-width: fit-content;
   grid-auto-flow: column;
-  transform: translateX(1rem);
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
-.edit,
-.update,
-.delete,
-.cancel {
+.buttons button {
   padding: 0.2em 0.7em;
   border-radius: var(--radius);
+  background-color: var(--soft-white);
+  color: var(--charcoal-gray);
   font-size: 0.85em;
-  background-color: var(--white);
 }
 
-.delete:active {
-  background-color: var(--red);
-  color: var(--white);
-}
-
-.cancel:active {
-  background-color: hsl(240, 3.8%, 46.1%);
-}
-
-.update:active,
-.edit:active {
-  background-color: var(--black);
-  color: hsl(0, 0%, 98%);
+.header button:focus-visible,
+.buttons button:focus-visible,
+.header button:active,
+.buttons button:active {
+  background-color: var(--charcoal-gray);
+  color: var(--soft-white);
 }
 
 .list {
   display: grid;
-  gap: 0.5em;
+  gap: 0.2em;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .header button:hover {
-    background-color: hsl(142.4, 71.8%, 29.2%);
-  }
-
-  .delete:hover {
-    background-color: var(--red);
-    color: var(--white);
-  }
-
-  .cancel:hover {
-    background-color: hsl(240, 3.8%, 46.1%);
-  }
-
-  .update:hover,
-  .edit:hover {
-    background-color: var(--black);
-    color: hsl(0, 0%, 98%);
+  .header button:hover,
+  .buttons button:hover {
+    background-color: var(--charcoal-gray);
+    color: var(--soft-white);
   }
 }

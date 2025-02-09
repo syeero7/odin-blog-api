@@ -9,16 +9,26 @@
   min-width: 95vw;
   max-width: 70ch;
   grid-template-rows: min-content;
-  padding: 1rem;
+  padding: 0.5em;
 }
 
 .header {
   padding: 1rem 0;
 }
 
+.post > p {
+  white-space: pre-line;
+  margin-bottom: 1em;
+}
+
+.header h1 {
+  margin-bottom: 0.2em;
+}
+
 .header time {
-  font-size: 0.7em;
-  color: hsl(240, 5.2%, 33.9%);
+  font-size: 0.9em;
+  font-weight: 300;
+  color: var(--charcoal-gray);
 }
 
 @media screen and (min-width: 40em) {

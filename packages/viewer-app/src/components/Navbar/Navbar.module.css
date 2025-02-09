@@ -1,11 +1,13 @@
 .container {
   display: flex;
+  gap: 0.5em;
   justify-content: end;
+  margin-right: 0.5em;
 }
 
 .navbar {
-  padding: 0.2em;
-  border-bottom: 2px hsl(240, 5%, 64.9%) solid;
+  padding: 0.4em;
+  border-bottom: var(--charcoal-gray) 2px solid;
 }
 
 .listItem {
@@ -13,7 +15,9 @@
 }
 
 .link {
-  padding: 0.25em 1rem;
+  font-family: var(--ff-serif);
+  font-size: 1.3em;
+  padding: 0.25em 0.4rem;
 }
 
 .link:hover,
@@ -23,19 +27,27 @@
 }
 
 .button {
-  background-color: var(--white);
+  background-color: var(--soft-white);
   border-radius: var(--radius);
+  font-weight: 500;
+  font-family: var(--ff-serif);
+  font-size: 1.2em;
   padding: 0.25em 1rem;
 }
 
+.button:focus-visible,
 .button:active {
-  background-color: var(--black);
-  color: hsl(0, 0%, 98%);
+  background-color: var(--charcoal-gray);
+  color: var(--soft-white);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .button:hover {
-    background-color: var(--black);
-    color: hsl(0, 0%, 98%);
+    background-color: var(--charcoal-gray);
+    color: var(--soft-white);
+  }
+
+  .link:hover {
+    text-decoration: underline;
   }
 }

@@ -6,7 +6,7 @@
 }
 
 .card {
-  box-shadow: hsl(240, 4.9%, 83.9%) 0 0 0 2px;
+  box-shadow: var(--light-gray) 0 0 0 2px;
   border-radius: var(--radius);
   min-height: 7.5rem;
   display: flex;
@@ -15,16 +15,19 @@
 .card:hover,
 .card:active,
 .card:focus-within {
-  box-shadow: hsl(240, 5.3%, 26.1%) 0 0 0 3px;
+  box-shadow: var(--charcoal-gray) 0 0 0 3px;
 }
 
-.link:has(:focus-visible) .title {
-  font-size: 1.1em;
+.title {
+  font-size: 1.2em;
+  font-family: var(--ff-serif);
   font-weight: 500;
 }
 
 .content {
-  font-size: 0.7em;
+  font-size: 0.9em;
+  margin-top: 0.3em;
+  white-space: pre-line;
 }
 
 .link {

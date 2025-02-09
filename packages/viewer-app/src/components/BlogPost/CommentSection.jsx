@@ -99,11 +99,9 @@ function Comment({ id, content, user, editId, setEditId, clearEditId }) {
           ></textarea>
         </div>
 
-        <div className={styles.btnContainer}>
-          <button type="submit" className={styles.update}>
-            Update
-          </button>
-          <button type="button" onClick={clearEditId} className={styles.cancel}>
+        <div className={styles.buttons}>
+          <button type="submit">Update</button>
+          <button type="button" onClick={clearEditId}>
             Cancel
           </button>
         </div>
@@ -113,12 +111,11 @@ function Comment({ id, content, user, editId, setEditId, clearEditId }) {
     <article className={styles.comment}>
       <p>{content}</p>
       {user && (
-        <div className={styles.btnContainer}>
+        <div className={styles.buttons}>
           <button
             onClick={() => {
               setEditId(id);
             }}
-            className={styles.edit}
           >
             Edit
           </button>
@@ -134,9 +131,7 @@ function Comment({ id, content, user, editId, setEditId, clearEditId }) {
               }
             }}
           >
-            <button type="submit" className={styles.delete}>
-              Delete
-            </button>
+            <button type="submit">Delete</button>
           </Form>
         </div>
       )}

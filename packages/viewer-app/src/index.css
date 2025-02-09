@@ -7,14 +7,16 @@
 }
 
 :root {
-  --ff: ui-monospace, "Roboto Mono", "Courier New", monospace;
-  --fs: clamp(1rem, 0.5em + min(1.2vw, 1rem), 3rem);
+  --ff-sans-serif: Verdana, Tahoma, Arial, sans-serif;
+  --ff-serif: Georgia, "Times New Roman", serif;
 
-  --white: hsl(0, 0%, 100%);
-  --black: hsl(240, 10%, 3.9%);
-  --zinc: hsl(240, 5.9%, 90%);
+  --navy-blue: hsl(210, 29%, 24%);
+  --soft-white: hsl(0, 0%, 96%);
+  --charcoal-gray: hsl(0, 0%, 20%);
+  --coral: hsl(6, 58%, 53%);
+  --light-gray: hsl(240, 4.9%, 83.9%);
   --blue: hsl(224.3, 76.3%, 48%);
-  --red: hsl(0, 73.7%, 41.8%);
+
   --radius: 0.5em;
 }
 
@@ -29,27 +31,28 @@ li {
 }
 
 body {
-  font-family: var(--ff);
-  font-size: var(--fs);
+  font-family: var(--ff-sans-serif);
   min-height: 100vh;
-  background-color: var(--white);
+  background-color: var(--soft-white);
+  color: var(--charcoal-gray);
 }
 
-button {
+button,
+input,
+textarea {
   font-family: inherit;
   font-size: inherit;
 }
 
+input[type="checkbox"],
 button:hover {
   cursor: pointer;
 }
 
-h1 {
-  font-size: 1.5em;
-}
-
+h1,
 h2 {
-  font-size: 1.2em;
+  font-family: var(--ff-serif);
+  color: var(--navy-blue);
 }
 
 textarea {
