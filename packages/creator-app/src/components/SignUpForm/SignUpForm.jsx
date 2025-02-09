@@ -12,10 +12,7 @@ function SignUpForm() {
   if (token) return <Navigate to="/" replace />;
   if (data?.user) return <Navigate to="/login" replace />;
 
-  const errors = data?.errors.reduce((acc, err) => {
-    acc[err.path] = err.msg;
-    return acc;
-  }, {});
+  const errors = data?.errors || {};
 
   return (
     <div className={styles.container}>
@@ -26,21 +23,21 @@ function SignUpForm() {
           label="Email"
           type="email"
           name="email"
-          errorMessage={errors?.email}
+          errorMessage={errors.email?.msg}
           autoComplete="username"
         />
         <InputField
           label="Password"
           type="password"
           name="password"
-          errorMessage={errors?.password}
+          errorMessage={errors.password?.msg}
           autoComplete="new-password"
         />
         <InputField
           label="Confirm Password"
           type="password"
           name="confirmPassword"
-          errorMessage={errors?.confirmPassword}
+          errorMessage={errors.confirmPassword?.msg}
           autoComplete="new-password"
         />
         <InputField
@@ -56,7 +53,7 @@ function SignUpForm() {
             label="Author Passcode"
             type="password"
             name="authorPasscode"
-            errorMessage={errors?.authorPasscode}
+            errorMessage={errors.authorPasscode?.msg}
           />
         )}
         <button type="submit" className={styles.button}>
