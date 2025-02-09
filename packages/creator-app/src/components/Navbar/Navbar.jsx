@@ -1,31 +1,42 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../AuthProvider/AuthProvider";
+import styles from "./Navbar.module.css";
 
 function Navbar() {
   const { token, onLogout } = useAuth();
 
   return (
-    <nav>
-      <ul>
+    <nav className={styles.navbar}>
+      <ul className={styles.container}>
         {!token ? (
           <>
-            <li>
-              <NavLink to="/login">Login</NavLink>
+            <li className={styles.listItem}>
+              <NavLink className={styles.link} to="/login">
+                Login
+              </NavLink>
             </li>
-            <li>
-              <NavLink to="/register">Sign Up</NavLink>
+            <li className={styles.listItem}>
+              <NavLink className={styles.link} to="/register">
+                Sign Up
+              </NavLink>
             </li>
           </>
         ) : (
           <>
-            <li>
-              <NavLink to="/posts">Posts</NavLink>
+            <li className={styles.listItem}>
+              <NavLink className={styles.link} to="/posts">
+                Posts
+              </NavLink>
             </li>
-            <li>
-              <NavLink to="/posts/new">New Post</NavLink>
+            <li className={styles.listItem}>
+              <NavLink className={styles.link} to="/posts/new">
+                New Post
+              </NavLink>
             </li>
-            <li>
-              <button onClick={onLogout}>Logout</button>
+            <li className={styles.listItem}>
+              <button className={styles.button} onClick={onLogout}>
+                Logout
+              </button>
             </li>
           </>
         )}
