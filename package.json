@@ -6,6 +6,7 @@
   "scripts": {
     "dev:api": "npm run dev -w @packages/api",
     "start:api": "npm start -w @packages/api",
+    "build:api": "npm run build -w @packages/api",
     "dev:creator-app": "npm run dev -w @packages/creator-app",
     "start:creator-app": "npm start -w @packages/creator-app",
     "build:creator-app": "npm run build -w @packages/creator-app",
