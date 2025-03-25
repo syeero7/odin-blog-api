@@ -14,8 +14,8 @@ import {
   createCommentPost,
   updateCommentPut,
   deleteComment,
-} from "../controllers/post.js";
-import verifyAuthor from "../middleware/verifyAuthor.js";
+} from "./posts.handler.js";
+import verifyAuthor from "../../middleware/verify-author.js";
 
 const router = Router();
 
