@@ -1,6 +1,8 @@
-const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS.split(",");
+import { type CorsOptions } from "cors";
 
-export const corsOptions = {
+const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS!.split(",");
+
+export const corsOptions: CorsOptions = {
   origin: (origin, callback) => {
     console.log("Request Origin:", origin);
 
@@ -10,7 +12,7 @@ export const corsOptions = {
       return;
     }
 
-    if (ALLOWED_ORIGINS.includes(origin)) {
+    if (origin && ALLOWED_ORIGINS.includes(origin)) {
       callback(null, true);
     } else {
       console.warn(`Blocked request from origin: ${origin}`);
