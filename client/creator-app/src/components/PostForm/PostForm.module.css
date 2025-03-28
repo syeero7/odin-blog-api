@@ -1,0 +1,81 @@
+.container {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  min-height: 85vh;
+  margin-top: 0.5em;
+}
+.container > div {
+  border: var(--light-gray) 3px solid;
+  border-radius: var(--radius);
+  padding: 0.8em 0 0.5em;
+}
+
+.container h1 {
+  text-align: center;
+  margin-bottom: 0.2em;
+}
+
+.container input[type="checkbox"] {
+  margin-bottom: 0.3em;
+}
+
+.container label:has(input[type="checkbox"]) {
+  transform: translateY(0.3em);
+}
+
+.form {
+  display: grid;
+  gap: 0.5em;
+  padding: 0.4em;
+  gap: 0.7rem;
+  margin: 0 0.5em;
+}
+
+.label {
+  font-size: 0.85em;
+  display: grid;
+}
+
+.label > span {
+  margin-bottom: 0.3em;
+}
+
+.label > textarea {
+  min-width: clamp(16rem, 30vw + 5rem, 45rem);
+  min-height: clamp(7.5rem, 30vh + 5rem, 20rem);
+  padding: 0.3em;
+}
+
+.error {
+  color: var(--coral);
+  font-size: 0.8em;
+  margin-top: 0.3em;
+}
+
+.buttons {
+  display: grid;
+  gap: 0.8rem;
+  grid-auto-flow: column;
+  margin-top: 0.5em;
+}
+
+.buttons button {
+  color: var(--charcoal-gray);
+  background-color: var(--soft-white);
+  padding: 0.5em 0;
+  border-radius: var(--radius);
+}
+
+.buttons button:active,
+.buttons button:focus-visible {
+  color: var(--soft-white);
+  background-color: var(--charcoal-gray);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .buttons button:hover {
+    color: var(--soft-white);
+    background-color: var(--charcoal-gray);
+  }
+}

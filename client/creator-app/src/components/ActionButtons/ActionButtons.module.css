@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  padding: 0.2em;
+  gap: 0.4em;
+}
+
+.container button {
+  padding: 0.2em 0.6em;
+  border-radius: var(--radius);
+  background-color: var(--soft-white);
+  color: var(--charcoal-gray);
+  font-family: var(--ff-serif);
+  font-weight: 500;
+}
+
+@media screen and (min-width: 36em) {
+  .container {
+    padding-top: 0.5em;
+    gap: 0.6em;
+  }
+
+  .container button {
+    padding: 0.25em 0.8em;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .container button:hover {
+    background-color: var(--charcoal-gray);
+    color: var(--soft-white);
+  }
+}
