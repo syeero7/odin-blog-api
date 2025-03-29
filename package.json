@@ -1,28 +1,28 @@
 {
-  "name": "blog-api",
+  "name": "blog",
   "version": "1.0.0",
   "main": "index.js",
   "private": true,
   "scripts": {
-    "dev:api": "npm run dev -w @packages/api",
-    "start:api": "npm start -w @packages/api",
-    "build:api": "npm run build -w @packages/api",
-    "dev:creator-app": "npm run dev -w @packages/creator-app",
-    "start:creator-app": "npm start -w @packages/creator-app",
-    "build:creator-app": "npm run build -w @packages/creator-app",
-    "preview:creator-app": "npm run preview -w @packages/creator-app",
-    "dev:viewer-app": "npm run dev -w @packages/viewer-app",
-    "start:viewer-app": "npm start -w @packages/viewer-app",
-    "build:viewer-app": "npm run build -w @packages/viewer-app",
-    "preview:viewer-app": "npm run preview -w @packages/viewer-app"
+    "dev:api": "npm run dev -w @blog/api",
+    "start:api": "npm start -w @blog/api",
+    "build:api": "npm run build -w @blog/api",
+    "dev:creator-app": "npm run dev -w @blog/creator-app",
+    "start:creator-app": "npm start -w @blog/creator-app",
+    "build:creator-app": "npm run build -w @blog/creator-app",
+    "preview:creator-app": "npm run preview -w @blog/creator-app",
+    "dev:viewer-app": "npm run dev -w @blog/viewer-app",
+    "start:viewer-app": "npm start -w @blog/viewer-app",
+    "build:viewer-app": "npm run build -w @blog/viewer-app",
+    "preview:viewer-app": "npm run preview -w @blog/viewer-app"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "workspaces": [
-    "packages/api",
-    "packages/creator-app",
-    "packages/viewer-app"
+    "packages/*",
+    "client/*",
+    "server"
   ]
 }
