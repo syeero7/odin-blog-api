@@ -1,0 +1,80 @@
+import { getItem } from "./localStorage";
+
+class PublicBlogAPI {
+  constructor(protected apiURL: string) {
+    this.apiURL = apiURL;
+  }
+
+  async registerUser(body: {
+    email: string;
+    password: string;
+    confirmPassword: string;
+    isAuthor: boolean;
+    authorPasscode: string;
+  }) {
+    const options = {
+      method: "POST",
+      headers: this.getJSONHeader(),
+      body: JSON.stringify(body),
+    };
+
+    return await fetch(`${this.apiURL}/auth/register`, options);
+  }
+
+  async loginUser(body: { email: string; password: string }) {
+    const options = {
+      method: "POST",
+      headers: this.getJSONHeader(),
+      body: JSON.stringify(body),
+    };
+
+    return await fetch(`${this.apiURL}/auth/login`, options);
+  }
+
+  async getPublishedPosts() {
+    return await fetch(`${this.apiURL}/posts/published`);
+  }
+  async getPublishedPostById(postId: string | number) {
+    return await fetch(`${this.apiURL}/posts/published/${postId}/comments`);
+  }
+
+  async createComment(postId: string | number, body: { comment: string }) {
+    const options = {
+      method: "POST",
+      headers: this.getHeaders(),
+      body: JSON.stringify(body),
+    };
+
+    await fetch(`${this.apiURL}/posts/${postId}/comments`, options);
+  }
+
+  async updateComment(commentId: string | number, body: { comment: string }) {
+    const options = {
+      method: "PUT",
+      headers: this.getHeaders(),
+      body: JSON.stringify(body),
+    };
+
+    await fetch(`${this.apiURL}/posts/comments/${commentId}`, options);
+  }
+
+  async deleteComment(commentId: string | number) {
+    const options = { method: "DELETE", headers: this.getAuthorizationHeader() };
+    await fetch(`${this.apiURL}/posts/comments/${commentId}`, options);
+  }
+
+  protected getJSONHeader() {
+    return { "Content-type": "application/json" };
+  }
+
+  protected getHeaders() {
+    return { ...this.getJSONHeader(), ...this.getAuthorizationHeader() };
+  }
+
+  protected getAuthorizationHeader() {
+    const { token } = getItem() || {};
+    return { Authorization: `Bearer ${token}` };
+  }
+}
+
+export default PublicBlogAPI;

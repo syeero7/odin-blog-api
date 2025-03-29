@@ -31,4 +31,5 @@
   color: var(--coral);
   font-size: 0.8em;
   margin-top: 0.3em;
+  min-height: 1em;
 }

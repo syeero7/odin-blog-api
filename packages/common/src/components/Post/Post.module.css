@@ -1,15 +1,14 @@
-.container {
-  padding: 1rem;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
-}
-
 .card {
   box-shadow: var(--light-gray) 0 0 0 2px;
-  border-radius: var(--radius);
   min-height: 7.5rem;
   display: flex;
+  max-width: min(100%, 500px);
+
+  & img {
+    max-width: 100%;
+    min-width: 100%;
+    height: auto;
+  }
 }
 
 .card:hover,
@@ -20,8 +19,10 @@
 
 .title {
   font-size: 1.2em;
+  margin-block: 0.7em;
   font-family: var(--ff-serif);
   font-weight: 500;
+  text-align: center;
 }
 
 .content {
@@ -33,14 +34,4 @@
 .link {
   flex: 1;
   padding: 1rem;
-}
-
-.noPosts {
-  font-style: italic;
-}
-
-@media screen and (min-width: 36em) {
-  .container {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
