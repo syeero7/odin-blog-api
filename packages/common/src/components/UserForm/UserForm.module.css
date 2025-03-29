@@ -17,36 +17,35 @@
 
 .form h1 {
   max-width: 13ch;
-}
-
-.center {
+  margin-block: 0.5em;
   text-align: center;
 }
 
-p.center > a {
-  color: var(--blue);
-  text-decoration: underline;
-}
-
-p.center {
+.form p:last-child {
   font-size: 0.9em;
+  text-align: center;
+
+  & a {
+    color: var(--blue);
+    text-decoration: underline;
+  }
 }
 
-.button {
+.form button {
   margin: 1rem 0;
   padding: 0.6em 0;
   background-color: var(--soft-white);
   border-radius: var(--radius);
 }
 
-button.button:focus-visible,
-button.button:active {
+.form button:focus-visible,
+.form button:active {
   background-color: var(--charcoal-gray);
   color: var(--soft-white);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .button:hover {
+  .form button:hover {
     background-color: var(--charcoal-gray);
     color: var(--soft-white);
   }

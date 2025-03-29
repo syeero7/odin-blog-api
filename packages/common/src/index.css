@@ -33,6 +33,7 @@ li {
 body {
   font-family: var(--ff-sans-serif);
   min-height: 100vh;
+  min-width: 320px;
   background-color: var(--soft-white);
   color: var(--charcoal-gray);
 }
@@ -57,4 +58,10 @@ h2 {
 
 textarea {
   resize: none;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
