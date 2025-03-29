@@ -1,0 +1,28 @@
+.container {
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
+}
+
+.listItem {
+  box-shadow: var(--light-gray) 0 0 0 2px;
+  border-radius: var(--radius);
+  min-height: 7.5rem;
+  display: flex;
+}
+
+.listItem:active,
+.listItem:focus-within {
+  box-shadow: var(--charcoal-gray) 0 0 0 3px;
+}
+
+.noPosts {
+  font-style: italic;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .listItem:hover {
+    box-shadow: var(--charcoal-gray) 0 0 0 3px;
+  }
+}
