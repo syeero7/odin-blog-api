@@ -7,8 +7,8 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@common": resolve(__dirname, "../../packages/common/src"),
+      "@shared": resolve(__dirname, "../../shared/src"),
     },
   },
-  optimizeDeps: { include: ["@common/components"] },
+  optimizeDeps: { include: ["@shared/components"] },
 });
