@@ -7,6 +7,7 @@ import cors from "cors";
 
 import prisma from "@/prisma-client.ts";
 import auth from "./api/auth/router.ts";
+import posts from "./api/posts/router.ts";
 
 const server = express();
 const { ALLOWED_ORIGINS, SECRET, NODE_ENV, PORT } = process.env;
@@ -67,7 +68,7 @@ passport.use(
 );
 
 server.use("/auth", auth);
-// server.use("/posts")
+server.use("/posts", posts);
 
 server.use(((error, _req, res, _next) => {
   console.error(error);
