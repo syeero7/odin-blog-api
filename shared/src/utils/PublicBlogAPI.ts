@@ -20,7 +20,7 @@ class PublicBlogAPI {
       body: JSON.stringify(body),
     };
 
-    return await fetch(`${this.apiURL}/auth/register`, options);
+    return fetch(`${this.apiURL}/auth/register`, options);
   }
 
   async loginUser(body: { email: string; password: string }) {
@@ -30,14 +30,14 @@ class PublicBlogAPI {
       body: JSON.stringify(body),
     };
 
-    return await fetch(`${this.apiURL}/auth/login`, options);
+    return fetch(`${this.apiURL}/auth/login`, options);
   }
 
   async getPublishedPosts() {
-    return await fetch(`${this.apiURL}/posts/published`);
+    return fetch(`${this.apiURL}/posts/published`);
   }
   async getPublishedPostById(postId: string | number) {
-    return await fetch(`${this.apiURL}/posts/published/${postId}/comments`);
+    return fetch(`${this.apiURL}/posts/published/${postId}/comments`);
   }
 
   async createComment(postId: string | number, body: { comment: string }) {
@@ -47,7 +47,7 @@ class PublicBlogAPI {
       body: JSON.stringify(body),
     };
 
-    await fetch(`${this.apiURL}/posts/${postId}/comments`, options);
+    fetch(`${this.apiURL}/posts/${postId}/comments`, options);
   }
 
   async updateComment(commentId: string | number, body: { comment: string }) {
@@ -57,7 +57,7 @@ class PublicBlogAPI {
       body: JSON.stringify(body),
     };
 
-    await fetch(`${this.apiURL}/posts/comments/${commentId}`, options);
+    fetch(`${this.apiURL}/posts/comments/${commentId}`, options);
   }
 
   async deleteComment(commentId: string | number) {
@@ -65,7 +65,7 @@ class PublicBlogAPI {
       method: "DELETE",
       headers: this.getAuthorizationHeader(),
     };
-    await fetch(`${this.apiURL}/posts/comments/${commentId}`, options);
+    fetch(`${this.apiURL}/posts/comments/${commentId}`, options);
   }
 
   protected getJSONHeader() {

@@ -8,12 +8,12 @@ class PrivateBlogAPI extends PublicBlogAPI {
 
   async getPosts() {
     const options = { headers: this.getAuthorizationHeader() };
-    return await fetch(`${this.apiURL}/posts`, options);
+    return fetch(`${this.apiURL}/posts`, options);
   }
 
   async getPostById(postId: string | number) {
     const options = { headers: this.getAuthorizationHeader() };
-    return await fetch(`${this.apiURL}/posts/${postId}/comments`, options);
+    return fetch(`${this.apiURL}/posts/${postId}/comments`, options);
   }
 
   async createPost(body: Omit<Post, "id">) {
@@ -23,7 +23,7 @@ class PrivateBlogAPI extends PublicBlogAPI {
       body: JSON.stringify(body),
     };
 
-    return await fetch(`${this.apiURL}/posts/`, options);
+    return fetch(`${this.apiURL}/posts/`, options);
   }
 
   async updatePostStatus(
@@ -36,7 +36,7 @@ class PrivateBlogAPI extends PublicBlogAPI {
       body: JSON.stringify(body),
     };
 
-    return await fetch(`${this.apiURL}/posts/${postId}/status`, options);
+    return fetch(`${this.apiURL}/posts/${postId}/status`, options);
   }
 
   async updatePost(
@@ -49,7 +49,7 @@ class PrivateBlogAPI extends PublicBlogAPI {
       body: JSON.stringify(body),
     };
 
-    return await fetch(`${this.apiURL}/posts/${postId}/`, options);
+    return fetch(`${this.apiURL}/posts/${postId}/`, options);
   }
 
   async deletePost(postId: string | number) {
@@ -57,7 +57,7 @@ class PrivateBlogAPI extends PublicBlogAPI {
       method: "DELETE",
       headers: this.getAuthorizationHeader(),
     };
-    await fetch(`${this.apiURL}/posts/${postId}`, options);
+    fetch(`${this.apiURL}/posts/${postId}`, options);
   }
 }
 
