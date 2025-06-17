@@ -4,7 +4,7 @@ import { useAuth } from "../AuthProvider";
 import styles from "./CommentSection.module.css";
 import { Form, Link } from "react-router-dom";
 
-function CommentSection({ comments, isAdmin }: CommentSectionProps) {
+function CommentSection({ comments, admin }: CommentSectionProps) {
   const [editId, setEditId] = useState<null | number>(null);
   const { user } = useAuth();
 
@@ -30,7 +30,7 @@ function CommentSection({ comments, isAdmin }: CommentSectionProps) {
               <Comment
                 id={comment.id}
                 content={comment.content}
-                canManageComment={isAdmin || user?.id === comment.authorId}
+                canManageComment={admin || user?.id === comment.authorId}
                 isSelected={comment.id === editId}
                 onEdit={() => setEditId(comment.id)}
                 onCancel={clearEditId}
@@ -163,7 +163,7 @@ const useShowError = () => {
 
 interface CommentSectionProps {
   comments: CommentData[];
-  isAdmin: boolean;
+  admin: boolean;
 }
 
 interface CommentProps extends CommentData {

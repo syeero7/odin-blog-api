@@ -7,8 +7,8 @@ function BlogPost() {
   const { post } = useLoaderData<{ post: PostWithComments }>();
 
   return (
-    <Post post={post} isAdmin>
-      {(id, isPublished) => <ActionButtons id={id} isPublished={isPublished} />}
+    <Post post={post} admin>
+      {(id, published) => <ActionButtons id={id} published={published} />}
     </Post>
   );
 }

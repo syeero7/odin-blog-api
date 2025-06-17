@@ -1,16 +1,19 @@
 import { Form, useFetcher, useNavigate } from "react-router-dom";
 import styles from "./ActionButtons.module.css";
 
-function ActionButtons({ id, isPublished }: { id: number; isPublished: boolean }) {
+function ActionButtons({ id, published }: { id: number; published: boolean }) {
   const navigate = useNavigate();
   const postURL = `/posts/${id}/`;
 
   return (
     <div className={styles.container}>
-      <button className={styles.edit} onClick={() => navigate(`${postURL}update`)}>
+      <button
+        className={styles.edit}
+        onClick={() => navigate(`${postURL}update`)}
+      >
         Edit
       </button>
-      <TogglePostState state={isPublished} postId={id} />
+      <TogglePostState state={published} postId={id} />
       <Form
         action={`${postURL}delete`}
         method="delete"
@@ -18,7 +21,8 @@ function ActionButtons({ id, isPublished }: { id: number; isPublished: boolean }
           if (!confirm("Are you sure you want to delete this post?")) {
             e.preventDefault();
           }
-        }}>
+        }}
+      >
         <button className={styles.delete} type="submit">
           Delete
         </button>
@@ -27,10 +31,16 @@ function ActionButtons({ id, isPublished }: { id: number; isPublished: boolean }
   );
 }
 
-function TogglePostState({ state, postId }: { state: boolean; postId: number }) {
+function TogglePostState({
+  state,
+  postId,
+}: {
+  state: boolean;
+  postId: number;
+}) {
   const fetcher = useFetcher();
-  const isPublished = fetcher.formData
-    ? fetcher.formData.get("isPublished") === "true"
+  const published = fetcher.formData
+    ? fetcher.formData.get("published") === "true"
     : state;
 
   return (
@@ -39,10 +49,11 @@ function TogglePostState({ state, postId }: { state: boolean; postId: number }) 
       <button
         className={styles.state}
         type="submit"
-        name="isPublished"
-        value={isPublished ? "false" : "true"}
-        aria-label={isPublished ? "unpublish the post" : "publish the post"}>
-        {isPublished ? "Unpublish" : "Publish"}
+        name="published"
+        value={published ? "false" : "true"}
+        aria-label={published ? "unpublish the post" : "publish the post"}
+      >
+        {published ? "Unpublish" : "Publish"}
       </button>
     </fetcher.Form>
   );

@@ -8,7 +8,7 @@ export interface Post {
   title: string;
   content: string;
   createdAt: string;
-  isPublished: boolean;
+  published: boolean;
 }
 
 export interface Comment {

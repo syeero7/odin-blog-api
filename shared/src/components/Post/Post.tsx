@@ -5,10 +5,10 @@ import styles from "./Post.module.css";
 import noImg from "../../assets/no-image.webp";
 
 interface PostProps extends PostData {
-  children?: (id: number, isPublished: boolean) => ReactElement;
+  children?: (id: number, published: boolean) => ReactElement;
 }
 
-function Post({ id, title, content, isPublished, children }: PostProps) {
+function Post({ id, title, content, published, children }: PostProps) {
   return (
     <article className={styles.card}>
       <Link to={`/posts/${id}`} className={styles.link}>
@@ -21,7 +21,7 @@ function Post({ id, title, content, isPublished, children }: PostProps) {
           {content.length > 120 ? content.substring(0, 120) + "..." : content}
         </p>
       </Link>
-      {children && isPublished !== undefined && children(id, isPublished)}
+      {children && published !== undefined && children(id, published)}
     </article>
   );
 }

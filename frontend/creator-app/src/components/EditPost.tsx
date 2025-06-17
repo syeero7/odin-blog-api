@@ -11,11 +11,9 @@ function EditPost() {
   const postId = post.id;
 
   const formAction = async (formData: FormData) => {
-    const isPublished = formData.get("isPublished") === "on";
-    const createdAt = new Date().toLocaleString().split(",")[0];
+    const published = formData.get("published") === "on";
     const body = {
-      isPublished,
-      createdAt,
+      published,
       title: formData.get("title") as string,
       content: formData.get("content") as string,
     };

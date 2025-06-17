@@ -8,10 +8,10 @@ function CreatePost() {
   const navigate = useNavigate();
 
   const formAction = async (formData: FormData) => {
-    const isPublished = formData.get("isPublished") === "on";
+    const published = formData.get("published") === "on";
     const createdAt = new Date().toLocaleString().split(",")[0];
     const body = {
-      isPublished,
+      published,
       createdAt,
       title: formData.get("title") as string,
       content: formData.get("content") as string,

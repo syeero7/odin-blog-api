@@ -9,7 +9,7 @@ interface PostFormProps
   extends Pick<FormHTMLAttributes<HTMLFormElement>, "action"> {
   title: "Update" | "Create";
   values?: Post;
-  errors?: { title: { msg: string }; content: { msg: string } };
+  errors?: { title: string; content: string };
 }
 
 function PostForm({ title, action, values, errors }: PostFormProps) {
@@ -25,13 +25,10 @@ function PostForm({ title, action, values, errors }: PostFormProps) {
             name="title"
             required
             defaultValue={values?.title}
-            error={errors?.title?.msg}
+            error={errors?.title}
           />
 
-          <ContentTextarea
-            value={values?.content}
-            error={errors?.content?.msg}
-          />
+          <ContentTextarea value={values?.content} error={errors?.content} />
 
           {title === "Create" && (
             <Input

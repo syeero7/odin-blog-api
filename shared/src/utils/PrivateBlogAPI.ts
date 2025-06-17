@@ -28,7 +28,7 @@ class PrivateBlogAPI extends PublicBlogAPI {
 
   async updatePostStatus(
     postId: string | number,
-    body: Pick<Post, "isPublished">
+    body: Pick<Post, "published">
   ) {
     const options = {
       method: "PUT",
@@ -41,7 +41,7 @@ class PrivateBlogAPI extends PublicBlogAPI {
 
   async updatePost(
     postId: string | number,
-    body: Omit<Post, "id" | "isPublished">
+    body: Omit<Post, "id" | "published" | "createdAt">
   ) {
     const options = {
       method: "PUT",

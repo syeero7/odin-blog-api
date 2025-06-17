@@ -6,10 +6,10 @@ import styles from "./BlogPost.module.css";
 interface BlogPostProps {
   post: PostWithComments;
   children?: (id: number, isPublished: boolean) => ReactElement;
-  isAdmin?: boolean;
+  admin?: boolean;
 }
 
-function BlogPost({ children, post, isAdmin = false }: BlogPostProps) {
+function BlogPost({ children, post, admin = false }: BlogPostProps) {
   return (
     <main className={styles.container}>
       <article className={styles.post}>
@@ -20,11 +20,11 @@ function BlogPost({ children, post, isAdmin = false }: BlogPostProps) {
             {new Date(post.createdAt).toLocaleString("en-GB").split(",")[0]}
           </time>
 
-          {children && children(post.id, post.isPublished)}
+          {children && children(post.id, post.published)}
         </header>
         <p>{post.content}</p>
 
-        <CommentSection comments={post.comments} isAdmin={isAdmin} />
+        <CommentSection comments={post.comments} admin={admin} />
       </article>
     </main>
   );

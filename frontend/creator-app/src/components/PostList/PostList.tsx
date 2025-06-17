@@ -14,8 +14,8 @@ function PostList() {
           {posts.map((post) => (
             <li key={post.id} className={styles.listItem}>
               <Post {...post}>
-                {(id, isPublished) => (
-                  <ActionButtons id={id} isPublished={isPublished} />
+                {(id, published) => (
+                  <ActionButtons id={id} published={published} />
                 )}
               </Post>
             </li>

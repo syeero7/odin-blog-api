@@ -34,7 +34,10 @@ function LoginForm() {
       />
       <SubmitButton />
       <p>
-        Don&apos;t have an account? <Link to="/register">Sign Up</Link>
+        Don&apos;t have an account?{" "}
+        <Link to="/register" viewTransition>
+          Sign Up
+        </Link>
       </p>
     </UserForm>
   );
@@ -67,8 +70,8 @@ const useFormController = () => {
     const res = await publicBlogAPI.loginUser({ email, password });
 
     if (res.ok) {
-      const { token, id } = await res.json();
-      onLogin({ token, id });
+      const { token, user } = await res.json();
+      onLogin({ token, id: user.id });
       return;
     }
 

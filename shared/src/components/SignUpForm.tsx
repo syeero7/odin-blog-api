@@ -19,7 +19,7 @@ function SignUpForm() {
         label="Email"
         type="email"
         name="email"
-        error={errors?.email?.msg}
+        error={errors?.email}
         autoComplete="username email"
         required
       />
@@ -27,7 +27,7 @@ function SignUpForm() {
         label="Password"
         type="password"
         name="password"
-        error={errors?.password?.msg}
+        error={errors?.password}
         autoComplete="new-password"
         required
       />
@@ -35,14 +35,14 @@ function SignUpForm() {
         label="Confirm Password"
         type="password"
         name="confirmPassword"
-        error={errors?.confirmPassword?.msg}
+        error={errors?.confirmPassword}
         autoComplete="new-password"
         required
       />
       <Input
         label="Register as an author"
         type="checkbox"
-        name="isAuthor"
+        name="author"
         required={false}
         onChange={(e) => setIsChecked(e.target.checked)}
       />
@@ -52,7 +52,7 @@ function SignUpForm() {
         label="Author Passcode"
         type="password"
         name="authorPasscode"
-        error={errors?.authorPasscode?.msg}
+        error={errors?.authorPasscode}
         autoComplete="passcode"
         required
       />
@@ -60,7 +60,10 @@ function SignUpForm() {
       <SubmitButton />
 
       <p>
-        Already have an account? <Link to="/login">Login</Link>
+        Already have an account?{" "}
+        <Link to="/login" viewTransition>
+          Login
+        </Link>
       </p>
     </UserForm>
   );
@@ -77,10 +80,10 @@ function SubmitButton() {
 }
 
 interface SignUpErrors {
-  email: { msg: string };
-  password: { msg: string };
-  confirmPassword: { msg: string };
-  authorPasscode: { msg: string };
+  email: string;
+  password: string;
+  confirmPassword: string;
+  authorPasscode: string;
 }
 
 const useFormController = () => {
@@ -94,12 +97,15 @@ const useFormController = () => {
     const { email, password, confirmPassword } = Object.fromEntries(
       [...formData].map(([key, val]) => [key, val.toString()])
     );
-    const isAuthor = formData.get("isAuthor") === "on";
-    const authorPasscode = isAuthor ? (formData.get("authorPasscode") as string) : "";
-    const body = { email, password, confirmPassword, isAuthor, authorPasscode };
+    const role = formData.get("author") === "on" ? "AUTHOR" : "USER";
+    const authorPasscode = role
+      ? (formData.get("authorPasscode") as string)
+      : "";
+    const body = { email, password, confirmPassword, role, authorPasscode };
 
     const res = await publicBlogAPI.registerUser(body);
-    if (res.ok) return navigate("/login", { replace: true });
+    if (res.ok)
+      return navigate("/login", { replace: true, viewTransition: true });
 
     const { errors } = await res.json();
     setErrors(errors);

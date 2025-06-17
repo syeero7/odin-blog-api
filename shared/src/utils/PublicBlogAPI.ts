@@ -11,7 +11,7 @@ class PublicBlogAPI {
     email: string;
     password: string;
     confirmPassword: string;
-    isAuthor: boolean;
+    role: string;
     authorPasscode: string;
   }) {
     const options = {
