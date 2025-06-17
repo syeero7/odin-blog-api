@@ -1,6 +1,7 @@
 import { validationResult, body } from "express-validator";
 import asyncHandler from "express-async-handler";
 import { User } from "@prisma/client";
+import { Response } from "express";
 import passport from "passport";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
@@ -61,10 +62,19 @@ export const login = asyncHandler(async (req, res, next) => {
     { session: false },
     (error: Error, user: User, info: { message: string }) => {
       if (error) return next(error);
-      if (!user) return res.status(400).json({ errors: info.message });
+      if (!user) return sendErrorMessage(res, info.message);
 
       const token = jwt.sign({ id: user.id }, process.env.SECRET!);
       res.json({ token, user: { id: user.id, role: user.role } });
     }
   )(req, res, next);
 });
+
+function sendErrorMessage(res: Response, message: string) {
+  const errors: { email?: string; password?: string } = {};
+
+  if (message.match(/user/i)) errors.email = message;
+  if (message.match(/password/i)) errors.password = message;
+
+  res.status(400).json({ errors });
+}
