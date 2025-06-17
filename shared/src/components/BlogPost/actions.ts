@@ -1,4 +1,4 @@
-import { redirect, ActionFunction } from "react-router-dom";
+import { redirect, type ActionFunction } from "react-router-dom";
 import { publicBlogAPI } from "../../utils/blogAPI";
 
 export const createComment: ActionFunction = async ({ request, params }) => {

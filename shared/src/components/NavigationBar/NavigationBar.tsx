@@ -1,6 +1,6 @@
-import { NavLink, NavLinkProps } from "react-router-dom";
+import { NavLink, type NavLinkProps } from "react-router-dom";
 import { useAuth } from "../AuthProvider";
-import { ReactElement, useEffect, useRef, useState } from "react";
+import { type ReactElement, useEffect, useRef, useState } from "react";
 import styles from "./NavigationBar.module.css";
 import logo from "../../assets/logo.webp";
 
@@ -27,11 +27,15 @@ function NavigationBar({ children }: NavBarProps) {
           onClick={onClick}
           onBlur={onBlur}
           aria-label="Toggle navigation menu"
-          aria-expanded={isOpen}>
+          aria-expanded={isOpen}
+        >
           <span></span>
         </button>
 
-        <ul className={`${styles.container} ${isOpen ? styles.open : ""}`} ref={menuRef}>
+        <ul
+          className={`${styles.container} ${isOpen ? styles.open : ""}`}
+          ref={menuRef}
+        >
           {children.public}
           {!user ? (
             <AuthNavLinks />
@@ -39,7 +43,11 @@ function NavigationBar({ children }: NavBarProps) {
             <>
               {children.private}
               <li>
-                <button type="button" onClick={onLogout} className={styles.button}>
+                <button
+                  type="button"
+                  onClick={onLogout}
+                  className={styles.button}
+                >
                   Logout
                 </button>
               </li>

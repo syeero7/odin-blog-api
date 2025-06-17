@@ -1,5 +1,5 @@
-import { ReactElement } from "react";
-import { PostWithComments } from "../../utils/types";
+import { type ReactElement } from "react";
+import { type PostWithComments } from "../../utils/types";
 import CommentSection from "./CommentSection";
 import styles from "./BlogPost.module.css";
 

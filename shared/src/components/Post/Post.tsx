@@ -1,6 +1,6 @@
-import { ReactElement } from "react";
+import { type ReactElement } from "react";
 import { Link } from "react-router-dom";
-import { Post as PostData } from "../../utils/types";
+import { type Post as PostData } from "../../utils/types";
 import styles from "./Post.module.css";
 import noImg from "../../assets/no-image.webp";
 

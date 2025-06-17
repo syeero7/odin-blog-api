@@ -1,6 +1,6 @@
 import { Navigate, useNavigate } from "react-router-dom";
 import styles from "./Homepage.module.css";
-import { useAuth } from "@common/components/AuthProvider";
+import { useAuth } from "@shared/components/AuthProvider";
 
 function Homepage() {
   const { user } = useAuth();

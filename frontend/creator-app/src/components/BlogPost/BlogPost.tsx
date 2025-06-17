@@ -1,6 +1,6 @@
-import { PostWithComments } from "@common/utils/types";
+import { type PostWithComments } from "@shared/utils/types";
 import { useLoaderData } from "react-router-dom";
-import Post from "@common/components/BlogPost";
+import Post from "@shared/components/BlogPost";
 import ActionButtons from "../ActionButtons";
 
 function BlogPost() {

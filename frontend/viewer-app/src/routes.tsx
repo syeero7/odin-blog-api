@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import Fallback from "@common/components/Fallback";
-import ErrorPage from "@common/components/ErrorPage";
-import LoginForm from "@common/components/LoginForm";
-import SignUpForm from "@common/components/SignUpForm";
-import * as actions from "@common/components/BlogPost/actions";
+import Fallback from "@shared/components/Fallback";
+import ErrorPage from "@shared/components/ErrorPage";
+import LoginForm from "@shared/components/LoginForm";
+import SignUpForm from "@shared/components/SignUpForm";
+import * as actions from "@shared/components/BlogPost/actions";
 
 import PostList, { loader as postsLoader } from "./components/PostList";
 import BlogPost, { loader as blogPostLoader } from "./components/BlogPost";

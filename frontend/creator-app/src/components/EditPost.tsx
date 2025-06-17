@@ -1,8 +1,8 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { privateBlogAPI } from "@common/utils/blogAPI";
+import { privateBlogAPI } from "@shared/utils/blogAPI";
 import PostForm from "./PostForm";
-import { Post } from "@common/utils/types";
+import { type Post } from "@shared/utils/types";
 
 function EditPost() {
   const { post } = useLoaderData<{ post: Post }>();
@@ -26,7 +26,14 @@ function EditPost() {
     setErrors(errors);
   };
 
-  return <PostForm title="Update" values={post} action={formAction} errors={errors} />;
+  return (
+    <PostForm
+      title="Update"
+      values={post}
+      action={formAction}
+      errors={errors}
+    />
+  );
 }
 
 export default EditPost;

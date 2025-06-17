@@ -1,5 +1,5 @@
-import { FormEvent, useEffect, useState } from "react";
-import { Comment as CommentData } from "../../utils/types";
+import { type FormEvent, useEffect, useState } from "react";
+import { type Comment as CommentData } from "../../utils/types";
 import { useAuth } from "../AuthProvider";
 import styles from "./CommentSection.module.css";
 import { Form, Link } from "react-router-dom";
@@ -66,7 +66,8 @@ function CommentCreationForm({ clearEditId }: { clearEditId: () => void }) {
           placeholder="Add a comment"
           aria-label="add comment"
           maxLength={300}
-          required></textarea>
+          required
+        ></textarea>
 
         <span aria-live="polite" className={styles.error}>
           {showError && (
@@ -106,7 +107,11 @@ function Comment({
       {canManageComment && (
         <div className={styles.buttons}>
           <button onClick={onEdit}>Edit</button>
-          <Form action={`comments/${id}/delete`} method="delete" onSubmit={handleSubmit}>
+          <Form
+            action={`comments/${id}/delete`}
+            method="delete"
+            onSubmit={handleSubmit}
+          >
             <button type="submit">Delete</button>
           </Form>
         </div>
@@ -126,7 +131,8 @@ function CommentUpdateForm({ id, content, onCancel }: CommentUpdateFormProps) {
             maxLength={300}
             required
             defaultValue={content}
-            autoFocus></textarea>
+            autoFocus
+          ></textarea>
         </div>
 
         <div className={styles.buttons}>

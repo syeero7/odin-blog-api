@@ -1,5 +1,5 @@
-import { LoaderFunction } from "react-router-dom";
-import { publicBlogAPI } from "@common/utils/blogAPI";
+import { type LoaderFunction } from "react-router-dom";
+import { publicBlogAPI } from "@shared/utils/blogAPI";
 
 export const loader: LoaderFunction = async ({ params }) => {
   const res = await publicBlogAPI.getPublishedPostById(params.postId!);

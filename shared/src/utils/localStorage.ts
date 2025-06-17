@@ -1,4 +1,4 @@
-import { AuthenticatedUser } from "./types";
+import { type AuthenticatedUser } from "./types";
 
 const LOCAL_STORAGE_KEY = "blogger";
 

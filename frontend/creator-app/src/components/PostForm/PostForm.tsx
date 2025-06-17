@@ -1,11 +1,12 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useFormStatus } from "react-dom";
-import { FormHTMLAttributes } from "react";
-import Input from "@common/components/Input";
+import { type FormHTMLAttributes } from "react";
+import Input from "@shared/components/Input";
 import styles from "./PostForm.module.css";
-import { Post } from "@common/utils/types";
+import { type Post } from "@shared/utils/types";
 
-interface PostFormProps extends Pick<FormHTMLAttributes<HTMLFormElement>, "action"> {
+interface PostFormProps
+  extends Pick<FormHTMLAttributes<HTMLFormElement>, "action"> {
   title: "Update" | "Create";
   values?: Post;
   errors?: { title: { msg: string }; content: { msg: string } };
@@ -27,10 +28,18 @@ function PostForm({ title, action, values, errors }: PostFormProps) {
             error={errors?.title?.msg}
           />
 
-          <ContentTextarea value={values?.content} error={errors?.content?.msg} />
+          <ContentTextarea
+            value={values?.content}
+            error={errors?.content?.msg}
+          />
 
           {title === "Create" && (
-            <Input type="checkbox" label="Publish" name="isPublished" required={false} />
+            <Input
+              type="checkbox"
+              label="Publish"
+              name="isPublished"
+              required={false}
+            />
           )}
 
           <FormButtons title={title} />
@@ -49,7 +58,8 @@ function ContentTextarea({ value, error }: { value?: string; error?: string }) {
           required
           maxLength={1000}
           name="content"
-          defaultValue={value}></textarea>
+          defaultValue={value}
+        ></textarea>
       </label>
 
       {error && (

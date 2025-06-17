@@ -1,6 +1,12 @@
-import { createContext, ReactElement, use, useEffect, useState } from "react";
+import {
+  createContext,
+  type ReactElement,
+  use,
+  useEffect,
+  useState,
+} from "react";
 import { getItem, setItem, removeItem } from "../utils/localStorage";
-import { AuthenticatedUser } from "../utils/types";
+import { type AuthenticatedUser } from "../utils/types";
 import { useNavigate } from "react-router-dom";
 
 interface AuthContextValue {

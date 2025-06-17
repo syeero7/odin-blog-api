@@ -1,5 +1,5 @@
 import PublicBlogAPI from "./PublicBlogAPI";
-import { Post } from "./types";
+import { type Post } from "./types";
 
 class PrivateBlogAPI extends PublicBlogAPI {
   constructor(apiUrl: string) {
@@ -26,7 +26,10 @@ class PrivateBlogAPI extends PublicBlogAPI {
     return await fetch(`${this.apiURL}/posts/`, options);
   }
 
-  async updatePostStatus(postId: string | number, body: Pick<Post, "isPublished">) {
+  async updatePostStatus(
+    postId: string | number,
+    body: Pick<Post, "isPublished">
+  ) {
     const options = {
       method: "PUT",
       headers: this.getHeaders(),
@@ -36,7 +39,10 @@ class PrivateBlogAPI extends PublicBlogAPI {
     return await fetch(`${this.apiURL}/posts/${postId}/status`, options);
   }
 
-  async updatePost(postId: string | number, body: Omit<Post, "id" | "isPublished">) {
+  async updatePost(
+    postId: string | number,
+    body: Omit<Post, "id" | "isPublished">
+  ) {
     const options = {
       method: "PUT",
       headers: this.getHeaders(),
@@ -47,7 +53,10 @@ class PrivateBlogAPI extends PublicBlogAPI {
   }
 
   async deletePost(postId: string | number) {
-    const options = { method: "DELETE", headers: this.getAuthorizationHeader() };
+    const options = {
+      method: "DELETE",
+      headers: this.getAuthorizationHeader(),
+    };
     await fetch(`${this.apiURL}/posts/${postId}`, options);
   }
 }

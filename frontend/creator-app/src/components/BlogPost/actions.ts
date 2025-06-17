@@ -1,5 +1,5 @@
-import { privateBlogAPI } from "@common/utils/blogAPI";
-import { ActionFunction, redirect } from "react-router-dom";
+import { privateBlogAPI } from "@shared/utils/blogAPI";
+import { type ActionFunction, redirect } from "react-router-dom";
 
 export const updatePostStatus: ActionFunction = async ({ request }) => {
   const formData = await request.formData();

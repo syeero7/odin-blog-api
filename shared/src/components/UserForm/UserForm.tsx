@@ -1,4 +1,4 @@
-import { FormHTMLAttributes } from "react";
+import { type FormHTMLAttributes } from "react";
 import styles from "./UserForm.module.css";
 
 function UserForm({ children, action }: FormHTMLAttributes<HTMLFormElement>) {

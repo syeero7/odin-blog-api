@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { privateBlogAPI } from "@common/utils/blogAPI";
+import { privateBlogAPI } from "@shared/utils/blogAPI";
 import PostForm from "./PostForm";
 
 function CreatePost() {

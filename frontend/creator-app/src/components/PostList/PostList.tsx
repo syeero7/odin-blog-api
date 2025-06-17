@@ -1,5 +1,5 @@
-import Post from "@common/components/Post";
-import { Post as PostData } from "@common/utils/types";
+import Post from "@shared/components/Post";
+import { type Post as PostData } from "@shared/utils/types";
 import { useLoaderData } from "react-router-dom";
 import styles from "./PostList.module.css";
 import ActionButtons from "../ActionButtons";
@@ -14,7 +14,9 @@ function PostList() {
           {posts.map((post) => (
             <li key={post.id} className={styles.listItem}>
               <Post {...post}>
-                {(id, isPublished) => <ActionButtons id={id} isPublished={isPublished} />}
+                {(id, isPublished) => (
+                  <ActionButtons id={id} isPublished={isPublished} />
+                )}
               </Post>
             </li>
           ))}

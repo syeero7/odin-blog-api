@@ -1,7 +1,9 @@
 import { getItem } from "./localStorage";
 
 class PublicBlogAPI {
-  constructor(protected apiURL: string) {
+  protected apiURL;
+
+  constructor(apiURL: string) {
     this.apiURL = apiURL;
   }
 
@@ -59,7 +61,10 @@ class PublicBlogAPI {
   }
 
   async deleteComment(commentId: string | number) {
-    const options = { method: "DELETE", headers: this.getAuthorizationHeader() };
+    const options = {
+      method: "DELETE",
+      headers: this.getAuthorizationHeader(),
+    };
     await fetch(`${this.apiURL}/posts/comments/${commentId}`, options);
   }
 

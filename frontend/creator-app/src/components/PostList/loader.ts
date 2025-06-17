@@ -1,6 +1,6 @@
-import { LoaderFunction } from "react-router-dom";
-import { privateBlogAPI } from "@common/utils/blogAPI";
-import { getItem } from "@common/utils/localStorage";
+import { type LoaderFunction } from "react-router-dom";
+import { privateBlogAPI } from "@shared/utils/blogAPI";
+import { getItem } from "@shared/utils/localStorage";
 
 export const loader: LoaderFunction = async () => {
   if (!getItem()?.token) return;

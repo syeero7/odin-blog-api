@@ -1,4 +1,4 @@
-import NavigationBar from "@common/components/NavigationBar";
+import NavigationBar from "@shared/components/NavigationBar";
 
 function Navbar() {
   return (

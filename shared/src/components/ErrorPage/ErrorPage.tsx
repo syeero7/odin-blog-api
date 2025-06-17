@@ -2,7 +2,7 @@ import {
   useRouteError,
   Link,
   isRouteErrorResponse,
-  ErrorResponse,
+  type ErrorResponse,
 } from "react-router-dom";
 import styles from "./ErrorPage.module.css";
 
