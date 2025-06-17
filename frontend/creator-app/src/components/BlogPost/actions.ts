@@ -3,9 +3,9 @@ import { type ActionFunction, redirect } from "react-router-dom";
 
 export const updatePostStatus: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
-  const isPublished = formData.get("isPublished") === "true";
+  const published = formData.get("published") === "true";
   const postId = formData.get("postId") as string;
-  const res = await privateBlogAPI.updatePostStatus(postId, { isPublished });
+  const res = await privateBlogAPI.updatePostStatus(postId, { published });
   if (!res.ok) throw res;
 };
 

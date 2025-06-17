@@ -34,7 +34,7 @@ function PostForm({ title, action, values, errors }: PostFormProps) {
             <Input
               type="checkbox"
               label="Publish"
-              name="isPublished"
+              name="published"
               required={false}
             />
           )}

@@ -9,12 +9,10 @@ function CreatePost() {
 
   const formAction = async (formData: FormData) => {
     const published = formData.get("published") === "on";
-    const createdAt = new Date().toLocaleString().split(",")[0];
     const body = {
-      published,
-      createdAt,
       title: formData.get("title") as string,
       content: formData.get("content") as string,
+      published,
     };
 
     const res = await privateBlogAPI.createPost(body);

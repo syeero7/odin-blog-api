@@ -16,7 +16,7 @@ class PrivateBlogAPI extends PublicBlogAPI {
     return fetch(`${this.apiURL}/posts/${postId}/comments`, options);
   }
 
-  async createPost(body: Omit<Post, "id">) {
+  async createPost(body: Omit<Post, "id" | "createdAt">) {
     const options = {
       method: "POST",
       headers: this.getHeaders(),
