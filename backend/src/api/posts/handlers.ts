@@ -4,13 +4,16 @@ import asyncHandler from "express-async-handler";
 import prisma from "@/prisma-client.ts";
 
 export const getAllPublishedPosts = asyncHandler(async (_req, res) => {
-  const posts = await prisma.post.findMany({ where: { published: true } });
+  const posts = await prisma.post.findMany({
+    where: { published: true },
+    orderBy: { createdAt: "desc" },
+  });
 
   res.json({ posts });
 });
 
 export const getAllPosts = asyncHandler(async (_req, res) => {
-  const posts = await prisma.post.findMany();
+  const posts = await prisma.post.findMany({ orderBy: { createdAt: "desc" } });
 
   res.json({ posts });
 });
