@@ -1,8 +1,21 @@
 .container {
-  padding: 1rem;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
+  padding: 2em 1em;
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+
+  ul {
+    display: grid;
+    justify-items: center;
+    gap: 1em;
+
+    --min-col-size: 420px;
+
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(min(var(--min-col-size), 100%), 1fr)
+    );
+  }
 }
 
 .listItem {
@@ -10,6 +23,7 @@
   border-radius: var(--radius);
   min-height: 7.5rem;
   display: flex;
+  max-width: fit-content;
 }
 
 .listItem:active,

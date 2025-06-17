@@ -7,14 +7,15 @@ function ActionButtons({ id, published }: { id: number; published: boolean }) {
 
   return (
     <div className={styles.container}>
+      <TogglePostState state={published} postId={id} />
       <button
         className={styles.edit}
         onClick={() => navigate(`${postURL}update`)}
       >
         Edit
       </button>
-      <TogglePostState state={published} postId={id} />
       <Form
+        viewTransition
         action={`${postURL}delete`}
         method="delete"
         onSubmit={(e) => {
