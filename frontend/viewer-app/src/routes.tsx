@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, redirect } from "react-router-dom";
 import Fallback from "@shared/components/Fallback";
 import ErrorPage from "@shared/components/ErrorPage";
 import LoginForm from "@shared/components/LoginForm";
@@ -7,7 +7,6 @@ import * as actions from "@shared/components/BlogPost/actions";
 
 import PostList, { loader as postsLoader } from "./components/PostList";
 import BlogPost, { loader as blogPostLoader } from "./components/BlogPost";
-import Homepage from "./components/Homepage";
 import App from "./App";
 
 export const browserRouter = createBrowserRouter([
@@ -17,7 +16,7 @@ export const browserRouter = createBrowserRouter([
     HydrateFallback: Fallback,
     ErrorBoundary: ErrorPage,
     children: [
-      { index: true, Component: Homepage, ErrorBoundary: ErrorPage },
+      { index: true, loader: () => redirect("/posts") },
       { path: "register", Component: SignUpForm },
       { path: "login", Component: LoginForm },
       {
