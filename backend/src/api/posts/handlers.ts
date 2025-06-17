@@ -12,7 +12,7 @@ export const getAllPublishedPosts = asyncHandler(async (_req, res) => {
 export const getAllPosts = asyncHandler(async (_req, res) => {
   const posts = await prisma.post.findMany();
 
-  res.json(posts);
+  res.json({ posts });
 });
 
 type PostParams = Request["params"] & { postId: number };

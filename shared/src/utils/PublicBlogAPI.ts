@@ -20,7 +20,7 @@ class PublicBlogAPI {
       body: JSON.stringify(body),
     };
 
-    return fetch(`${this.apiURL}/auth/register`, options);
+    return fetch(`${this.apiURL}/auth/sign-up`, options);
   }
 
   async loginUser(body: { email: string; password: string }) {

@@ -1,5 +1,6 @@
 import { Router } from "express";
-import passport from "passport";
+import jwt from "jsonwebtoken";
+import prisma from "@/prisma-client.ts";
 import * as handlers from "./handlers.ts";
 
 const router = Router();
@@ -11,8 +12,20 @@ router.get(
   handlers.getPublishedPostWithComments
 );
 
-router.use((req, res, next) => {
-  passport.authenticate("jwt", { session: false })(req, res, next);
+router.use(async (req, res, next) => {
+  try {
+    const { authorization } = req.headers;
+    if (!authorization) return void res.sendStatus(401);
+
+    const token = authorization.split(" ")[1];
+    const payload = jwt.verify(token, process.env.SECRET!) as { id: number };
+    const user = await prisma.user.findUnique({ where: { id: payload.id } });
+    req.user = user || undefined;
+
+    next();
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.post("/:postId/comments", handlers.createComment);
