@@ -2,7 +2,7 @@ import { Request } from "express";
 import { validationResult, body, param } from "express-validator";
 import asyncHandler from "express-async-handler";
 import { User } from "@prisma/client";
-import prisma from "@/prisma-client.js";
+import prisma from "../../prisma-client.js";
 
 export const getAllPublishedPosts = asyncHandler(async (_req, res) => {
   const posts = await prisma.post.findMany({
