@@ -1,0 +1,52 @@
+.container {
+  padding: 2em 1em;
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+
+  ul {
+    display: grid;
+    justify-items: center;
+    gap: 1em;
+
+    --min-col-size: 420px;
+
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(min(var(--min-col-size), 100%), 1fr)
+    );
+  }
+}
+
+.listItem {
+  box-shadow: var(--light-gray) 0 0 0 2px;
+  border-radius: var(--radius);
+  min-height: 7.5rem;
+  max-width: fit-content;
+  display: flex;
+
+  article {
+    display: grid;
+  }
+}
+
+.listItem:active,
+.listItem:focus-within {
+  box-shadow: var(--charcoal-gray) 0 0 0 3px;
+}
+
+.listItem a + div {
+  margin-top: 0.5em;
+  justify-self: end;
+  padding: 0.5em;
+}
+
+.noPosts {
+  font-style: italic;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .listItem:hover {
+    box-shadow: var(--charcoal-gray) 0 0 0 3px;
+  }
+}

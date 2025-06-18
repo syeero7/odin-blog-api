@@ -1,0 +1,35 @@
+.container {
+  display: grid;
+}
+
+.container > label {
+  font-size: 0.85em;
+  display: grid;
+}
+
+.container > label > span {
+  margin-bottom: 0.3em;
+}
+
+.field {
+  min-height: 2em;
+}
+
+.checkbox {
+  display: grid;
+  gap: 1rem;
+  grid-auto-flow: column;
+  justify-content: start;
+}
+
+.checkbox > input {
+  transform: scale(1.5);
+  margin-left: 0.5rem;
+}
+
+.error {
+  color: var(--coral);
+  font-size: 0.8em;
+  margin-top: 0.3em;
+  min-height: 1em;
+}

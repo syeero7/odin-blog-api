@@ -1,0 +1,72 @@
+*::after,
+*::before,
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --ff-sans-serif: Verdana, Tahoma, Arial, sans-serif;
+  --ff-serif: Georgia, "Times New Roman", serif;
+
+  --navy-blue: hsl(210, 29%, 24%);
+  --soft-white: hsl(0, 0%, 96%);
+  --charcoal-gray: hsl(0, 0%, 20%);
+  --coral: hsl(6, 58%, 53%);
+  --light-gray: hsl(240, 4.9%, 83.9%);
+  --blue: hsl(224.3, 76.3%, 48%);
+
+  --radius: 0.5em;
+}
+
+li {
+  list-style: none;
+  margin: 0.5em;
+}
+
+:any-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  font-family: var(--ff-sans-serif);
+  min-height: 100vh;
+  min-width: 320px;
+  background-color: var(--soft-white);
+  color: var(--charcoal-gray);
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+input[type="checkbox"],
+button:hover {
+  cursor: pointer;
+}
+
+button {
+  transition-property: background-color, color;
+  transition-duration: 0.5s;
+}
+
+h1,
+h2 {
+  font-family: var(--ff-serif);
+  color: var(--navy-blue);
+}
+
+textarea {
+  resize: none;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
