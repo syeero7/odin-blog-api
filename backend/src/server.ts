@@ -5,7 +5,7 @@ import passport from "passport";
 import bcrypt from "bcryptjs";
 import cors from "cors";
 
-import prisma from "@/prisma-client.js";
+import prisma from "./prisma-client.js";
 import auth from "./api/auth/router.js";
 import posts from "./api/posts/router.js";
 

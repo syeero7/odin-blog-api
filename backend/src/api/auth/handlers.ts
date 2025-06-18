@@ -5,7 +5,7 @@ import { Response } from "express";
 import passport from "passport";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import prisma from "@/prisma-client.js";
+import prisma from "../../prisma-client.js";
 
 export const signUp = [
   body("email")
