@@ -1,7 +1,8 @@
 import { Request } from "express";
 import { validationResult, body, param } from "express-validator";
 import asyncHandler from "express-async-handler";
-import prisma from "@/prisma-client.ts";
+import { User } from "@prisma/client";
+import prisma from "@/prisma-client.js";
 
 export const getAllPublishedPosts = asyncHandler(async (_req, res) => {
   const posts = await prisma.post.findMany({
@@ -126,7 +127,7 @@ export const createPost = [
       return void res.status(400).json({ errors: formatted.mapped() });
     }
 
-    const userId = req.user!.id;
+    const userId = (req.user as User).id;
     const { title, content, published } = req.body;
     await prisma.post.create({
       data: {
@@ -226,7 +227,7 @@ export const createComment = [
       return void res.status(400).json({ errors: mapped });
     }
 
-    const userId = req.user!.id;
+    const userId = (req.user as User).id;
     const { postId } = req.params;
     const { content } = req.body;
     await prisma.comment.create({

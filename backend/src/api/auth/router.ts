@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as handlers from "./handlers.ts";
+import * as handlers from "./handlers.js";
 
 const router = Router();
 
