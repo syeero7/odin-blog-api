@@ -5,9 +5,9 @@ import passport from "passport";
 import bcrypt from "bcryptjs";
 import cors from "cors";
 
-import prisma from "@/prisma-client.ts";
-import auth from "./api/auth/router.ts";
-import posts from "./api/posts/router.ts";
+import prisma from "@/prisma-client.js";
+import auth from "./api/auth/router.js";
+import posts from "./api/posts/router.js";
 
 const server = express();
 const { ALLOWED_ORIGINS, SECRET, NODE_ENV, PORT } = process.env;

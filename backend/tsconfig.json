@@ -6,8 +6,6 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
-    "allowImportingTsExtensions": true,
-    "emitDeclarationOnly": true,
     "declaration": true,
     "outDir": "dist",
     "rootDir": "src",

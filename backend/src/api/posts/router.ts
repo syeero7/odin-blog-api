@@ -1,7 +1,8 @@
 import { Router } from "express";
 import jwt from "jsonwebtoken";
-import prisma from "@/prisma-client.ts";
-import * as handlers from "./handlers.ts";
+import { User } from "@prisma/client";
+import prisma from "@/prisma-client.js";
+import * as handlers from "./handlers.js";
 
 const router = Router();
 
@@ -33,7 +34,9 @@ router.put("/comments/:commentId", handlers.updateComment);
 router.delete("/comments/:commentId", handlers.deleteComment);
 
 router.use((req, res, next) => {
-  if (req.user?.role !== "AUTHOR") return void res.sendStatus(403);
+  if ((req.user as User | undefined)?.role !== "AUTHOR") {
+    return void res.sendStatus(403);
+  }
   next();
 });
 
