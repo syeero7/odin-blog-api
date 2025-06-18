@@ -14,7 +14,7 @@ function CommentSection({ comments, admin }: CommentSectionProps) {
 
   return (
     <section>
-      <header>
+      <header className={styles.header}>
         <h2>{`${comments.length > 0 ? comments.length : " "} Comment${
           comments.length > 1 ? "s" : ""
         }`}</h2>
