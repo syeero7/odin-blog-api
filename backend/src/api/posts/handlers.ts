@@ -51,7 +51,13 @@ export const getPublishedPostWithComments = [
         id: postId,
         published: true,
       },
-      include: { comments: true },
+      include: {
+        comments: {
+          orderBy: {
+            id: "desc",
+          },
+        },
+      },
     });
     if (!post) return void res.sendStatus(404);
 
@@ -82,7 +88,13 @@ export const getPostWithComments = [
     const { postId } = req.params;
     const post = await prisma.post.findUnique({
       where: { id: postId },
-      include: { comments: true },
+      include: {
+        comments: {
+          orderBy: {
+            id: "desc",
+          },
+        },
+      },
     });
     if (!post) return void res.sendStatus(404);
 
@@ -214,15 +226,17 @@ export const createComment = [
       return void res.status(400).json({ errors: mapped });
     }
 
+    const userId = req.user!.id;
     const { postId } = req.params;
     const { content } = req.body;
     await prisma.comment.create({
       data: {
         content,
         post: {
-          connect: {
-            id: postId,
-          },
+          connect: { id: postId },
+        },
+        author: {
+          connect: { id: userId },
         },
       },
     });

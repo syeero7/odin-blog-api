@@ -1,8 +1,8 @@
-import { type FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { type Comment as CommentData } from "../../utils/types";
 import { useAuth } from "../AuthProvider";
 import styles from "./CommentSection.module.css";
-import { Form, Link } from "react-router-dom";
+import { type FormProps, Form, Link } from "react-router-dom";
 
 function CommentSection({ comments, admin }: CommentSectionProps) {
   const [editId, setEditId] = useState<null | number>(null);
@@ -49,20 +49,25 @@ function CommentCreationForm({ clearEditId }: { clearEditId: () => void }) {
   const [showError, toggleShowError] = useShowError();
   const { user } = useAuth();
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit: FormProps["onSubmit"] = (e) => {
     clearEditId();
 
     if (!user) {
-      e.preventDefault();
+      e!.preventDefault();
       toggleShowError();
     }
   };
 
   return (
-    <Form method="post" action="comments" onSubmit={handleSubmit}>
+    <Form
+      method="post"
+      action="comments"
+      onSubmit={handleSubmit}
+      viewTransition
+    >
       <div className={styles.textareaContainer}>
         <textarea
-          name="comment"
+          name="content"
           placeholder="Add a comment"
           aria-label="add comment"
           maxLength={300}
@@ -91,7 +96,7 @@ function Comment({
   onEdit,
   onCancel,
 }: Omit<CommentProps, "authorId">) {
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit: FormProps["onSubmit"] = (e) => {
     if (!confirm("Are you sure you want to delete this comment?")) {
       e.preventDefault();
       return;
@@ -111,6 +116,7 @@ function Comment({
             action={`comments/${id}/delete`}
             method="delete"
             onSubmit={handleSubmit}
+            viewTransition
           >
             <button type="submit">Delete</button>
           </Form>
@@ -123,10 +129,15 @@ function Comment({
 function CommentUpdateForm({ id, content, onCancel }: CommentUpdateFormProps) {
   return (
     <div className={styles.comment}>
-      <Form method="put" action={`comments/${id}/update`} onSubmit={onCancel}>
+      <Form
+        method="put"
+        action={`comments/${id}/update`}
+        onSubmit={onCancel}
+        viewTransition
+      >
         <div className={styles.textareaContainer}>
           <textarea
-            name="comment"
+            name="content"
             aria-label="edit comment"
             maxLength={300}
             required

@@ -57,7 +57,7 @@ class PrivateBlogAPI extends PublicBlogAPI {
       method: "DELETE",
       headers: this.getAuthorizationHeader(),
     };
-    fetch(`${this.apiURL}/posts/${postId}`, options);
+    await fetch(`${this.apiURL}/posts/${postId}`, options);
   }
 }
 

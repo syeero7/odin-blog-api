@@ -4,7 +4,7 @@ import { publicBlogAPI } from "../../utils/blogAPI";
 export const createComment: ActionFunction = async ({ request, params }) => {
   const { postId } = params;
   const formData = await request.formData();
-  const body = { comment: formData.get("comment")! as string };
+  const body = { content: formData.get("content")! as string };
 
   await publicBlogAPI.createComment(postId!, body);
   return redirect(`/posts/${postId!}`);
@@ -13,10 +13,10 @@ export const createComment: ActionFunction = async ({ request, params }) => {
 export const updateComment: ActionFunction = async ({ request, params }) => {
   const { postId, commentId } = params;
   const formData = await request.formData();
-  const body = { comment: formData.get("comment")! as string };
+  const body = { content: formData.get("content")! as string };
 
   await publicBlogAPI.updateComment(commentId!, body);
-  return redirect(`/posts/${postId}`);
+  return redirect(`/posts/${postId!}`);
 };
 
 export const deleteComment: ActionFunction = async ({ params }) => {

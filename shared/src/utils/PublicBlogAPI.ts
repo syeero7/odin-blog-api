@@ -40,24 +40,24 @@ class PublicBlogAPI {
     return fetch(`${this.apiURL}/posts/published/${postId}/comments`);
   }
 
-  async createComment(postId: string | number, body: { comment: string }) {
+  async createComment(postId: string | number, body: { content: string }) {
     const options = {
       method: "POST",
       headers: this.getHeaders(),
       body: JSON.stringify(body),
     };
 
-    fetch(`${this.apiURL}/posts/${postId}/comments`, options);
+    await fetch(`${this.apiURL}/posts/${postId}/comments`, options);
   }
 
-  async updateComment(commentId: string | number, body: { comment: string }) {
+  async updateComment(commentId: string | number, body: { content: string }) {
     const options = {
       method: "PUT",
       headers: this.getHeaders(),
       body: JSON.stringify(body),
     };
 
-    fetch(`${this.apiURL}/posts/comments/${commentId}`, options);
+    await fetch(`${this.apiURL}/posts/comments/${commentId}`, options);
   }
 
   async deleteComment(commentId: string | number) {
@@ -65,7 +65,7 @@ class PublicBlogAPI {
       method: "DELETE",
       headers: this.getAuthorizationHeader(),
     };
-    fetch(`${this.apiURL}/posts/comments/${commentId}`, options);
+    await fetch(`${this.apiURL}/posts/comments/${commentId}`, options);
   }
 
   protected getJSONHeader() {
